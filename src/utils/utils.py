@@ -32,6 +32,6 @@ def date_time_invoker(llm_, text):
     }
     return dt_query
 
-def blacklist_keyword_guard(medical_keywords_, text)-> bool:
-    pattern = re.compile(r"(" + "|".join(map(re.escape, medical_keywords_)) + r")", re.IGNORECASE)
+def blacklist_keyword_guard(blacklist_keywords, text)-> bool:
+    pattern = re.compile(r"(" + "|".join(map(re.escape, blacklist_keywords)) + r")", re.IGNORECASE)
     return bool(pattern.search(text))

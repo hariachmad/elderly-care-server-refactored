@@ -13,6 +13,7 @@ from application.modules.ai_agent.AiAgent import AiAgent
 from langchain_ollama import ChatOllama 
 from application.modules.lang_graph.GraphBuilder import GraphBuilder
 from utils.utils import date_time_invoker
+from application.modules.cor.BlackListHandler import BlackListHandler
 
 load_dotenv()
 model = os.getenv("LLM_MODEL", "gemma2:2b")
@@ -41,13 +42,17 @@ User input: {user_input}
     }
 )
 
+userInput = "What is my medications schedule at tomorrow?"
+dt_entities = date_time_invoker(llm,userInput)
+
+blacklist = BlackListHandler()
+result = blacklist.handle(userInput)
+print(result)
+
 aiAgent = AiAgentBuilder().set_predefined_intents(predefined_intents).set_blacklist_keywords(medical_keywords).set_prompt_template(prompt).set_llm(llm).set_parser(parser).build()
-node = Node(predefined_intents, aiAgent.chain)
+node = Node(predefined_intents, aiAgent.chain, dt_entities)
 workflow = WorkflowBuilder().set_nodes(node).set_node_configs(node_configs).build()
 graph = GraphBuilder().set_workflow(workflow).build()
-userInput = "What is my medicine schedule at tomorrow?"
 
-dt_entities = date_time_invoker(llm,userInput)
 answer = graph.instance.invoke({"user_input": userInput})
 print(answer)
-print(dt_entities)
