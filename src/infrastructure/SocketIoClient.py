@@ -5,14 +5,14 @@ import os
 class SocketIoClient:
     def __init__(self):
         load_dotenv()
-        self.sio = socketio.Client()
-        self.sio.on("connect", self.on_connect)
-        self.sio.on("disconnect", self.on_disconnect)
-        self.sio.on("message", self.on_message)
+        self.instance = socketio.Client()
+        self.instance.on("connect", self.on_connect)
+        self.instance.on("disconnect", self.on_disconnect)
+        self.instance.on("message", self.on_message)
     
     def connect(self):
         server_url = os.getenv("SOCKETIO_SERVER_URL", "http://localhost:3000")
-        self.sio.connect(server_url)
+        self.instance.connect(server_url)
         
     def on_connect(self):
         print("Connected to Socket.IO server")

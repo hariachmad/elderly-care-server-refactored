@@ -1,0 +1,48 @@
+from application.modules.cor.Handler import Handler
+from constants.constants import medical_keywords
+from application.modules.ai_agent.AiAgentBuilder import AiAgentBuilder
+from application.modules.lang_graph.Node import Node
+from application.modules.lang_graph.WorkflowBuilder import WorkflowBuilder
+from application.modules.lang_graph.GraphBuilder import GraphBuilder
+from constants.constants import medical_keywords, predefined_intents, node_configs
+from utils.utils import date_time_invoker
+from infrastructure.LlmClient import LlmClient
+import os
+from langchain_classic.output_parsers import StructuredOutputParser, ResponseSchema
+from langchain_core.prompts import PromptTemplate
+from dotenv import load_dotenv
+
+class InferenceHandler(Handler):
+    def handle(self,input)->bool:
+        load_dotenv()     
+        response_schemas = [
+                ResponseSchema(
+                    name="intent", 
+                    description=f"User's goal or action. MUST be exactly one of: {predefined_intents}. If no match, return 'other'"
+                )
+            ]
+        parser = StructuredOutputParser.from_response_schemas(response_schemas)
+        prompt = PromptTemplate(
+                template="""You are an intent classifier.
+            Choose the most appropriate intent from the following list:
+            {intents}
+
+            User input: {user_input}
+
+            {format_instructions}""",
+                input_variables=["intents", "user_input"],
+                partial_variables={
+                    "format_instructions": parser.get_format_instructions(),
+                }
+            )
+        model = os.getenv("LLM_MODEL", "gemma2:2b")
+        temperature = int(os.getenv("LLM_TEMPERATURE", 0))
+        base_url = os.getenv("LLM_BASE_URL", "http://localhost:11434/")
+        llm = LlmClient(model, temperature, base_url).instance
+        dt_entities = date_time_invoker(llm,input)
+        aiAgent = AiAgentBuilder().set_predefined_intents(predefined_intents).set_blacklist_keywords(medical_keywords).set_prompt_template(prompt).set_llm(llm).set_parser(parser).build()
+        node = Node(predefined_intents, aiAgent.chain, dt_entities)
+        workflow = WorkflowBuilder().set_nodes(node).set_node_configs(node_configs).build()
+        graph = GraphBuilder().set_workflow(workflow).build()
+        answer = graph.instance.invoke({"user_input": input})
+        return super().handle(answer)
