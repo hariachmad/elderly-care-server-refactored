@@ -26,12 +26,21 @@ def date_time_invoker(llm_, text):
 
     result = llm_.invoke(prompt)
     dt = dateparser.parse(result.content.strip())
-    dt_query = {
-    'date' : dt.date().isoformat(),
-    'time' : None if dt.time() == datetime.min.time() else dt.time().isoformat()
-    }
-    return dt_query
+    if dt is None:
+        return {}    
+    if dt.date != None:
+        dt_query = {
+        'date' : dt.date().isoformat(),
+        'time' : None if dt.time() == datetime.min.time() else dt.time().isoformat()
+        }
+        return dt_query
+    return {}
 
 def blacklist_keyword_guard(blacklist_keywords, text)-> bool:
     pattern = re.compile(r"(" + "|".join(map(re.escape, blacklist_keywords)) + r")", re.IGNORECASE)
     return bool(pattern.search(text))
+
+def clean_for_tts(text):
+    text = re.sub(r"[^\w\s.,!?]", "", text)
+    text = re.sub(r"\s+", " ", text)
+    return text.strip()

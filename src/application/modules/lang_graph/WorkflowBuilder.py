@@ -25,7 +25,7 @@ class WorkflowBuilder:
         for node_name, schedule_type in self.node_configs.items():
             self.workflow.add_node(
             node_name, 
-            lambda state, st=schedule_type: {"final_answer": f"Here is your {st}"})
+            lambda state, st=schedule_type: {"final_answer": st["final_answer"]})
         
         self.workflow.add_node("router", lambda state: state)
 
@@ -43,25 +43,9 @@ class WorkflowBuilder:
         self.nodes.router_node,
         routers 
         )
-        # Medicine nodes
-        self.workflow.add_edge("medicine_today", END)
-        self.workflow.add_edge("medicine_weekly", END)
-        self.workflow.add_edge("medicine_monthly", END)
-        
-        # Doctor appointment nodes
-        self.workflow.add_edge("doctor_appointment_today", END)
-        self.workflow.add_edge("doctor_appointment_weekly", END)
-        self.workflow.add_edge("doctor_appointment_monthly", END)
-        
-        # Social activity nodes
-        self.workflow.add_edge("social_activity_today", END)
-        self.workflow.add_edge("social_activity_weekly", END)
-        self.workflow.add_edge("social_activity_monthly", END)
-        
-        # Visit except doctor nodes
-        self.workflow.add_edge("visit_except_doctor_today", END)
-        self.workflow.add_edge("visit_except_doctor_weekly", END)
-        self.workflow.add_edge("visit_except_doctor_monthly", END)
+
+        for node_name, _ in self.node_configs.items():
+            self.workflow.add_edge(node_name,END)
         
         self.workflow.add_edge("final", END)
     

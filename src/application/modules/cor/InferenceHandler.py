@@ -16,11 +16,16 @@ class InferenceHandler(Handler):
     def handle(self,input)->bool:
         load_dotenv()     
         response_schemas = [
-                ResponseSchema(
-                    name="intent", 
-                    description=f"User's goal or action. MUST be exactly one of: {predefined_intents}. If no match, return 'other'"
-                )
-            ]
+        ResponseSchema(
+            name="intent",
+            description=(
+                f"The user's intent. Allowed values: {predefined_intents}. "
+                "If input is empty, unclear, incomplete, not meaningful, or does not correspond "
+                "to any known intent, YOU MUST return 'other'. "
+                "Never guess. Only classify when confident."
+            )
+        )
+]
         parser = StructuredOutputParser.from_response_schemas(response_schemas)
         prompt = PromptTemplate(
                 template="""You are an intent classifier.
@@ -35,6 +40,7 @@ class InferenceHandler(Handler):
                     "format_instructions": parser.get_format_instructions(),
                 }
             )
+        
         model = os.getenv("LLM_MODEL", "gemma2:2b")
         temperature = int(os.getenv("LLM_TEMPERATURE", 0))
         base_url = os.getenv("LLM_BASE_URL", "http://localhost:11434/")
@@ -44,5 +50,6 @@ class InferenceHandler(Handler):
         node = Node(predefined_intents, aiAgent.chain, dt_entities)
         workflow = WorkflowBuilder().set_nodes(node).set_node_configs(node_configs).build()
         graph = GraphBuilder().set_workflow(workflow).build()
-        answer = graph.instance.invoke({"user_input": input})
+        answer = graph.instance.invoke({"intents": predefined_intents,"user_input": input})
+        print(answer)
         return super().handle(answer)

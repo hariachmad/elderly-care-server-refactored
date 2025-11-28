@@ -35,29 +35,102 @@ predefined_intents = [
     "visit except doctor schedule today",
     "visit except doctor schedule weekly",
     "visit except doctor schedule monthly",
-    "visit except doctor schedule specific day"
+    "visit except doctor schedule specific day",
+
+    "fall",
+    "help",
+    "i am ok",
+
+    "other topics"
 ]
 
 node_configs = {
-    # Medicine nodes
-    "medicine_today": "medicine schedule for today",
-    "medicine_weekly": "medicine schedule for this week", 
-    "medicine_monthly": "medicine schedule for this month",
-    
+    "help" : {
+        "node": "help",
+        "final_answer": "i will call you assistant"
+    },
+    "i_am_ok" : {
+        "node": "i am ok",
+        "final_answer": "Glad to know you are safe"
+    },
+    "fall" : {
+        "node": "fall",
+        "final_answer": "Hi, Do you need any help"
+    },          
+    "medicine_today": {
+        "node": "medicine schedule for today",
+        "final_answer": "here is your medicine schedule for today"
+    },
+    "medicine_weekly": {
+        "node": "medicine schedule for this week",
+        "final_answer": "here is your weekly medicine schedule"
+    },
+    "medicine_monthly": {
+        "node": "medicine schedule for this month",
+        "final_answer": "here is your monthly medicine schedule"
+    },
+    "medicine_schedule_specific_day": {
+        "node": "medicine schedule for specific day",
+        "final_answer": "here is your medicine schedule for that specific day"
+    },
+
     # Doctor appointment nodes
-    "doctor_appointment_today": "doctor appointment schedule for today",
-    "doctor_appointment_weekly": "doctor appointment schedule for this week",
-    "doctor_appointment_monthly": "doctor appointment schedule for this month",
-    
-    # Social activity nodes  
-    "social_activity_today": "social activity schedule for today",
-    "social_activity_weekly": "social activity schedule for this week",
-    "social_activity_monthly": "social activity schedule for this month",
-    
+    "doctor_appointment_today": {
+        "node": "doctor appointment schedule for today",
+        "final_answer": "here is your doctor appointment schedule for today"
+    },
+    "doctor_appointment_weekly": {
+        "node": "doctor appointment schedule for this week",
+        "final_answer": "here is your weekly doctor appointment schedule"
+    }
+,
+    "doctor_appointment_monthly": {
+        "node": "doctor appointment schedule for this month",
+        "final_answer": "here is your monthly doctor appointment schedule"
+    },
+    "doctor_appointment_specific_day": {
+        "node": "doctor appointment schedule for specific day",
+        "final_answer": "here is your doctor appointment schedule for that specific day"
+    },
+
+    # Social activity nodes
+    "social_activity_today": {
+        "node": "social activity schedule for today",
+        "final_answer": "here are your social activities for today"
+    },
+    "social_activity_weekly": {
+        "node": "social activity schedule for this week",
+        "final_answer": "here are your weekly social activities"
+    },
+    "social_activity_monthly": {
+        "node": "social activity schedule for this month",
+        "final_answer": "here are your monthly social activities"
+    },
+    "social_activity_specific_day": {
+        "node": "social activity schedule for specific day",
+        "final_answer": "here are your social activities for that specific day"
+    },
+
     # Visit except doctor nodes
-    "visit_except_doctor_today": "visit schedule (except doctor) for today", 
-    "visit_except_doctor_weekly": "visit schedule (except doctor) for this week",
-    "visit_except_doctor_monthly": "visit schedule (except doctor) for this month",
-    
-    "final": "answer, i dont have answer to you this time"
-}
+    "visit_except_doctor_today": {
+        "node": "visit schedule for today",
+        "final_answer": "here is your visit schedule for today"
+    },
+    "visit_except_doctor_weekly": {
+        "node": "visit schedule for this week",
+        "final_answer": "here is your weekly visit schedule"
+    },
+    "visit_except_doctor_monthly": {
+        "node": "visit schedule for this month",
+        "final_answer": "here is your monthly visit schedule"
+    },
+    "visit_except_doctor_specific_day": {
+        "node": "visit schedule specific day",
+        "final_answer": "here is your visit schedule for that specific day"
+    },
+
+    # Final fallback
+    "final": {
+        "node": "no matching node",
+        "final_answer": "i don't have an answer for you this time"
+    }}
