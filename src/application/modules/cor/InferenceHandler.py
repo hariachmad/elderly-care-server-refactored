@@ -20,7 +20,7 @@ class InferenceHandler(Handler):
             name="intent",
             description=(
                 f"The user's intent. Allowed values: {predefined_intents}. "
-                "If input is empty, unclear, incomplete, not meaningful, or does not correspond "
+                "If input is empty, unclear, incomplete, not meaningful, or does not correspond YOU MUST return 'other'"
                 "to any known intent, YOU MUST return 'other'. "
                 "Never guess. Only classify when confident."
             )
@@ -41,7 +41,7 @@ class InferenceHandler(Handler):
                 }
             )
         
-        model = os.getenv("LLM_MODEL", "gemma2:2b")
+        model = os.getenv("LLM_MODEL")
         temperature = int(os.getenv("LLM_TEMPERATURE", 0))
         base_url = os.getenv("LLM_BASE_URL", "http://localhost:11434/")
         llm = LlmClient(model, temperature, base_url).instance

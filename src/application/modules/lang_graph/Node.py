@@ -8,28 +8,28 @@ class Node:
         self.entities = entities
     
     def classify_intent_node(self,state:State):
-        embeddings = OllamaEmbeddings( model="nomic-embed-text:latest",
-         base_url="http://localhost:11434/", )
-        vectorstore = FAISS.from_texts(self.predefined_intents, embeddings)
+        # embeddings = OllamaEmbeddings( model="qwen2.5:7b",
+        # base_url="http://localhost:11434/", )
+        # vectorstore = FAISS.from_texts(self.predefined_intents, embeddings)
 
-        docs = vectorstore.similarity_search_with_score(state["user_input"], k=1)
-        doc, score = docs[0]
-        if score > 1.0:
-            return {
-                "intent": 'other',
-                "entities" : self.entities
-            }     
-        else :
-            return {
-                "intent": doc.page_content,
-                "entities" : self.entities
-            } 
-        # result = self.chain.invoke({"user_input": state["user_input"],
-        # "intents": self.predefined_intents})
-        # return {
-        #     "intent": result["intent"],
-        #     "entities" : self.entities
-        # }
+        # docs = vectorstore.similarity_search_with_score(state["user_input"], k=1)
+        # doc, score = docs[0]
+        # if score > 1.0:
+        #     return {
+        #         "intent": 'other',
+        #         "entities" : self.entities
+        #     }     
+        # else :
+        #     return {
+        #         "intent": doc.page_content,
+        #         "entities" : self.entities
+        #     } 
+        result = self.chain.invoke({"user_input": state["user_input"],
+        "intents": self.predefined_intents})
+        return {
+            "intent": result["intent"],
+            "entities" : self.entities
+        }
 
     
     def router_node(self, state: State):

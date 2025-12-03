@@ -8,7 +8,7 @@ from infrastructure.LlmClient import LlmClient
 import os
 import datetime
 
-model = os.getenv("LLM_MODEL", "gemma2:2b")
+model = os.getenv("LLM_MODEL")
 model_whisper = None
 temperature = int(os.getenv("LLM_TEMPERATURE", 0))
 base_url = os.getenv("LLM_BASE_URL", "http://localhost:11434/")

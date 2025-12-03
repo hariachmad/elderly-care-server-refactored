@@ -9,6 +9,6 @@ class LlmClient:
             cls._instance.instance = ChatOllama(
                 model=model_,
                 temperature=temperature_,
-                base_url=base_url_
+                base_url=base_url_,
             )
         return cls._instance

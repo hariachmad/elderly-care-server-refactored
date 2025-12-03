@@ -11,9 +11,14 @@ import os
 import datetime
 from infrastructure.TtsClient import TtsClient
 from infrastructure.SocketIoClient import SocketIoClient
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
 
 app = FastAPI()
-model = os.getenv("LLM_MODEL", "gemma2:2b")
+model = os.getenv("LLM_MODEL")
 model_whisper = None
 temperature = int(os.getenv("LLM_TEMPERATURE", 0))
 base_url = os.getenv("LLM_BASE_URL", "http://localhost:11434/")
