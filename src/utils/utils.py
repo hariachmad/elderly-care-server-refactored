@@ -44,3 +44,6 @@ def clean_for_tts(text):
     text = re.sub(r"[^\w\s.,!?]", "", text)
     text = re.sub(r"\s+", " ", text)
     return text.strip()
+
+def generate_node_name(intent: str):
+    return intent.replace(" ", "_")

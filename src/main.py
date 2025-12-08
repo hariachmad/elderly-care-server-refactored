@@ -3,7 +3,7 @@ from application.modules.cor.InferenceHandler import InferenceHandler
 from application.modules.cor.PageNavigatorHandler import PageNavigatorHandler
 from application.modules.cor.AudioFileDispatcherHandler import AudioFileDispatcherHandler
 from fastapi.responses import FileResponse
-from fastapi import FastAPI,File, UploadFile
+from fastapi import FastAPI,File, UploadFile, Body
 import whisper
 from infrastructure.LlmClient import LlmClient
 import asyncio
@@ -34,6 +34,21 @@ async def startup_event():
     print("✅ Whisper model loaded successfully!")
     llm.invoke("Lets Warm Up")
     print("✅ Warm-up finished!")
+
+@app.post("/transcribe-json")
+async def uploadJson(payload : dict = Body(...)):
+    start_time = datetime.datetime.now()  # 
+    print(f"🚀 Start transcribing at: {start_time.strftime('%Y-%m-%d %H:%M:%S')}")
+    blacklist = BlackListHandler()
+    inference = InferenceHandler()
+    blacklist.set_next(inference)
+    answer = blacklist.handle(payload["message"])
+    end_time = datetime.datetime.now() 
+    duration = (end_time - start_time).total_seconds()
+    print(f"🏁 Finished at: {end_time.strftime('%Y-%m-%d %H:%M:%S')} (Duration: {duration:.2f} seconds)")
+    return answer
+    
+
 @app.post("/transcribe")
 async def upload(file: UploadFile = File(...)):
     global model_whisper
@@ -60,12 +75,13 @@ async def upload(file: UploadFile = File(...)):
     audioFileDispatcher = AudioFileDispatcherHandler()
     blacklist.set_next(inference).set_next(pageNavigator).set_next(audioFileDispatcher)
 
-    blacklist.handle(result["text"])
+    answer = blacklist.handle(result["text"])
     end_time = datetime.datetime.now() 
     duration = (end_time - start_time).total_seconds()
     print(f"🏁 Finished at: {end_time.strftime('%Y-%m-%d %H:%M:%S')} (Duration: {duration:.2f} seconds)")
-    return FileResponse(
-        os.path.join(REPLY_DIR, "reply.wav"),
-        media_type="audio/wav",
-        filename="processed.wav"
-    )
+    # return FileResponse(
+    #     os.path.join(REPLY_DIR, "reply.wav"),
+    #     media_type="audio/wav",
+    #     filename="processed.wav"
+    # )
+    return answer

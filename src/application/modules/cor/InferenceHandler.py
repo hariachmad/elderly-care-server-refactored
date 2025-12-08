@@ -4,6 +4,7 @@ from application.modules.ai_agent.AiAgentBuilder import AiAgentBuilder
 from application.modules.lang_graph.Node import Node
 from application.modules.lang_graph.WorkflowBuilder import WorkflowBuilder
 from application.modules.lang_graph.GraphBuilder import GraphBuilder
+from application.modules.lang_graph.AnswerBuilder import AnswerBuilder
 from constants.constants import medical_keywords, predefined_intents, node_configs
 from utils.utils import date_time_invoker
 from infrastructure.LlmClient import LlmClient
@@ -51,5 +52,6 @@ class InferenceHandler(Handler):
         workflow = WorkflowBuilder().set_nodes(node).set_node_configs(node_configs).build()
         graph = GraphBuilder().set_workflow(workflow).build()
         answer = graph.instance.invoke({"intents": predefined_intents,"user_input": input})
-        print(answer)
-        return super().handle(answer)
+        result = AnswerBuilder().set_llm(llm).set_answer(answer).set_ask_llm_answers(["asking again"]).build()
+        return result
+        # return super().handle(answer)

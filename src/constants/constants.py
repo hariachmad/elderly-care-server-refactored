@@ -1,3 +1,5 @@
+
+
 medical_keywords = [
     "ECG", "EKG", "EEG", "MRI", "CT Scan", "Ultrasound", "X-ray",
     "Blood pressure monitor", "Glucometer", "Pulse oximeter", "Thermometer",
@@ -40,6 +42,9 @@ predefined_intents = [
     "fall",
     "help",
     "i am ok",
+
+    "greeting",
+    "call assistant",
 
     "other topics"
 ]
@@ -129,8 +134,57 @@ node_configs = {
         "final_answer": "here is your visit schedule for that specific day"
     },
 
+
+    "greeting" : {
+        "node": "greeting",
+        "final_answer": "asking again"
+    },
+
+    "call_assistant" : {
+        "node": "call assistant",
+        "final_answer": "Ok, wait i will call you assistant"
+    },
+
     # Final fallback
     "final": {
         "node": "no matching node",
         "final_answer": "i don't have an answer for you this time"
     }}
+
+INTENT_TO_NODE = {
+    # Medicine
+    "medicine schedule today": "medicine_today",
+    "medicine schedule weekly": "medicine_weekly",
+    "medicine schedule monthly": "medicine_monthly",
+    "medicine schedule specific day": "medicine_schedule_specific_day",
+
+    # Doctor Appointment
+    "doctor appointment schedule today": "doctor_appointment_today",
+    "doctor appointment schedule weekly": "doctor_appointment_weekly",
+    "doctor appointment schedule monthly": "doctor_appointment_monthly",
+    "doctor appointment schedule specific day": "doctor_appointment_specific_day",
+
+    # Social Activity
+    "social activity schedule today": "social_activity_today",
+    "social activity schedule weekly": "social_activity_weekly",
+    "social activity schedule monthly": "social_activity_monthly",
+    "social activity schedule specific day": "social_activity_specific_day",
+
+    # Visit Except Doctor
+    "visit except doctor schedule today": "visit_except_doctor_today",
+    "visit except doctor schedule weekly": "visit_except_doctor_weekly",
+    "visit except doctor schedule monthly": "visit_except_doctor_monthly",
+    "visit except doctor schedule specific day": "visit_except_doctor_specific_day",
+
+    # Fall Detection
+    "fall": "fall",
+    "help": "help",
+    "i am ok": "i_am_ok",
+
+    "greeting": "greeting",
+    "call assistant" : "call_assistant"
+}
+
+UNNAVIGATOR_INTENT = [
+    "other topics","other","greeting"
+]
