@@ -1,0 +1,16 @@
+[tool.ruff]
+select = [
+    "B",  # Bugbear - code smells, bad patterns
+    "PL", # Pylint - design & logic problems
+]
+
+line-length = 100
+target-version = "py311"
+
+# Hapus code komentar mati
+fixable = ["ALL"]
+unfixable = []
+
+# Per-file exceptions
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]  # allow module-level exports

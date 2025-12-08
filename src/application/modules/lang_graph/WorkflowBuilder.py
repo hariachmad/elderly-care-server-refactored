@@ -35,7 +35,7 @@ class WorkflowBuilder:
         
         routers = {}
         
-        for node_name, schedule_type in self.node_configs.items():
+        for node_name, _schedule_type in self.node_configs.items():
             routers[node_name] = node_name
         
         self.workflow.add_conditional_edges(

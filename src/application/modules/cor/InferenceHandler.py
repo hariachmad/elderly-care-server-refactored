@@ -42,7 +42,7 @@ class InferenceHandler(Handler):
             )
         
         model = os.getenv("LLM_MODEL")
-        temperature = int(os.getenv("LLM_TEMPERATURE", 0))
+        temperature = int(os.getenv("LLM_TEMPERATURE", "0"))
         base_url = os.getenv("LLM_BASE_URL", "http://localhost:11434/")
         llm = LlmClient(model, temperature, base_url).instance
         dt_entities = date_time_invoker(llm,input)

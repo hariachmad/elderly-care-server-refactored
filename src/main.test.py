@@ -7,7 +7,7 @@ import os
 
 model = os.getenv("LLM_MODEL")
 model_whisper = None
-temperature = int(os.getenv("LLM_TEMPERATURE", 0))
+temperature = int(os.getenv("LLM_TEMPERATURE", "0"))
 base_url = os.getenv("LLM_BASE_URL", "http://localhost:11434/")
 llm = LlmClient(model, temperature, base_url).instance
 
