@@ -1,5 +1,4 @@
 from application.modules.cor.Handler import Handler
-from constants.constants import medical_keywords
 from application.modules.ai_agent.AiAgentBuilder import AiAgentBuilder
 from application.modules.lang_graph.Node import Node
 from application.modules.lang_graph.WorkflowBuilder import WorkflowBuilder
@@ -26,7 +25,7 @@ class InferenceHandler(Handler):
                 "Never guess. Only classify when confident."
             )
         )
-]
+        ]
         parser = StructuredOutputParser.from_response_schemas(response_schemas)
         prompt = PromptTemplate(
                 template="""You are an intent classifier.
@@ -53,5 +52,6 @@ class InferenceHandler(Handler):
         graph = GraphBuilder().set_workflow(workflow).build()
         answer = graph.instance.invoke({"intents": predefined_intents,"user_input": input})
         result = AnswerBuilder().set_llm(llm).set_answer(answer).set_ask_llm_answers(["asking again"]).build()
-        return result
-        # return super().handle(answer)
+        if super().handle(result) is None:
+            return result
+        return super().handle(result)

@@ -1,6 +1,4 @@
 from langchain_ollama import ChatOllama 
-import os
-from dotenv import load_dotenv
 class LlmClient:
     _instance = None
     def __new__(cls, model_, temperature_, base_url_):

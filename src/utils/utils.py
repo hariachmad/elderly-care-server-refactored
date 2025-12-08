@@ -28,7 +28,7 @@ def date_time_invoker(llm_, text):
     dt = dateparser.parse(result.content.strip())
     if dt is None:
         return {}    
-    if dt.date != None:
+    if dt.date is None:
         dt_query = {
         'date' : dt.date().isoformat(),
         'time' : None if dt.time() == datetime.min.time() else dt.time().isoformat()

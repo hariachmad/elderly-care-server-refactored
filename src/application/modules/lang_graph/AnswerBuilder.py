@@ -17,7 +17,7 @@ class AnswerBuilder:
         return self
     
     def build(self):
-        if self.llm == None:
+        if self.llm is None:
             raise ValueError("llm must be set")
 
         if len(self.askLlmAnswers) == 0:

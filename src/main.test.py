@@ -2,11 +2,8 @@ from application.modules.cor.BlackListHandler import BlackListHandler
 from application.modules.cor.InferenceHandler import InferenceHandler
 from application.modules.cor.PageNavigatorHandler import PageNavigatorHandler
 from application.modules.cor.AudioFileDispatcherHandler import AudioFileDispatcherHandler
-from fastapi.responses import FileResponse
-from fastapi import FastAPI,File, UploadFile
 from infrastructure.LlmClient import LlmClient
 import os
-import datetime
 
 model = os.getenv("LLM_MODEL")
 model_whisper = None

@@ -1,5 +1,4 @@
 from TTS.api import TTS
-import os
 
 class TtsClient:
     _instance = None  # static variable untuk singleton

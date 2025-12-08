@@ -3,7 +3,7 @@ from application.modules.lang_graph.Node import Node
 from application.modules.lang_graph.Workflow import Workflow
 from application.modules.lang_graph.State import State
 class WorkflowBuilder:
-    def __init__(self):
+    def __init__(self): 
         self.nodes : Node = None
         self.node_configs = None
         self.workflow = StateGraph(State)

@@ -1,4 +1,4 @@
-from langgraph.graph import StateGraph, END
+from langgraph.graph import StateGraph
 from application.modules.lang_graph.Node import Node
 class Workflow:
     def __init__(self, nodes : Node, workflow : StateGraph):
