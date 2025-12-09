@@ -31,7 +31,9 @@ async def startup_event():
     global stt #noqa #just startup
     sio = SocketIoClient() #singleton initialization #noqa
     tts= TtsClient() #singleton initialization #noqa
-    stt = SttClient("small")._instance #singleton initialization #noqa
+    global model_whisper
+    loop = asyncio.get_event_loop()
+    model_whisper = await loop.run_in_executor(None, whisper.load_model, "small")
     print("✅ Whisper model loaded successfully!")
     llm.invoke("Lets Warm Up")
     print("✅ Warm-up finished!")
@@ -42,7 +44,8 @@ async def uploadJson(payload : dict = Body(...)): #noqa
     print(f"🚀 Start transcribing at: {start_time.strftime('%Y-%m-%d %H:%M:%S')}")
     blacklist = BlackListHandler()
     inference = InferenceHandler()
-    blacklist.set_next(inference)
+    navigate = PageNavigatorHandler()
+    blacklist.set_next(inference).set_next(navigate)
     answer = blacklist.handle(payload["message"])
     end_time = datetime.datetime.now() 
     duration = (end_time - start_time).total_seconds()
@@ -62,7 +65,7 @@ async def uploadWithReplyJson(file: UploadFile = File(...)): #noqa
 
     print(f"File '{file.filename}' uploaded successfully!")
     print("🧠 Transcribing with Whisper...")
-    result = stt.transcribe(file_path, language="english")
+    result = model_whisper.transcribe(file_path, language="english")
     print(result["text"])
     print("Transcribed with Whisper")
 
@@ -91,7 +94,7 @@ async def upload(file: UploadFile = File(...)): #noqa
 
     print(f"File '{file.filename}' uploaded successfully!")
     print("🧠 Transcribing with Whisper...")
-    result = stt.transcribe(file_path, language="english")
+    result = model_whisper.transcribe(file_path, language="english")
     print(result["text"])
     print("Transcribed with Whisper")
 

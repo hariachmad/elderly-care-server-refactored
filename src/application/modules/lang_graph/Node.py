@@ -1,6 +1,5 @@
 from application.modules.lang_graph.State import State
-from constants.constants import INTENT_TO_NODE
-
+from constants.IntentToNode import INTENT_TO_NODE
 class Node:
     def __init__(self, predefined_intents, chain,entities):
         self.predefined_intents = predefined_intents

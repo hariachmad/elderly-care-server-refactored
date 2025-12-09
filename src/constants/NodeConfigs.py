@@ -1,54 +1,3 @@
-
-
-medical_keywords = [
-    "ECG", "EKG", "EEG", "MRI", "CT Scan", "Ultrasound", "X-ray",
-    "Blood pressure monitor", "Glucometer", "Pulse oximeter", "Thermometer",
-    "Spirometer", "Infusion pump", "Insulin pump", "Dialysis machine",
-    "Ventilator", "Nebulizer", "Defibrillator", "Pacemaker", "Hearing aid",
-    "Orthopedic implant", "Prosthetic limb", "Hematology analyzer",
-    "Biochemistry analyzer", "PCR machine", "Microscope", "Centrifuge",
-    "ELISA reader", "Blood analyzer", "Surgical robot", "Endoscope",
-    "Laparoscope", "Stethoscope", "Syringe pump", "Catheter",
-    "Surgical laser", "Dental drill", "Ophthalmic lens", "Medical device",
-    "Diagnostic tool", "Implant", "Prosthesis", "Medical scanner",
-    "Monitoring device", "Rehabilitation device", "Wearable health tracker", "diagnosis", "medications","medication"
-]
-
-predefined_intents = [
-    # Medicine
-    "medicine schedule today",
-    "medicine schedule weekly",
-    "medicine schedule monthly",
-    "medicine schedule specific day",
-
-    # Doctor Appointment
-    "doctor appointment schedule today",
-    "doctor appointment schedule weekly",
-    "doctor appointment schedule monthly",
-    "doctor appointment schedule specific day",
-
-    # Social Activity
-    "social activity schedule today",
-    "social activity schedule weekly",
-    "social activity schedule monthly",
-    "social activity schedule specific day",
-
-    # Visit Except Doctor
-    "visit except doctor schedule today",
-    "visit except doctor schedule weekly",
-    "visit except doctor schedule monthly",
-    "visit except doctor schedule specific day",
-
-    "fall",
-    "help",
-    "i am ok",
-
-    "greeting",
-    "call assistant",
-
-    "other topics"
-]
-
 node_configs = {
     "help" : {
         "node": "help",
@@ -61,22 +10,32 @@ node_configs = {
     "fall" : {
         "node": "fall",
         "final_answer": "Hi, Do you need any help"
-    },          
-    "medicine_today": {
+    },
+
+
+    "medicine_schedule_today": {
         "node": "medicine schedule for today",
         "final_answer": "here is your medicine schedule for today"
     },
-    "medicine_weekly": {
+    "medicine_schedule_week": {
         "node": "medicine schedule for this week",
         "final_answer": "here is your weekly medicine schedule"
     },
-    "medicine_monthly": {
+    "medicine_schedule_month": {
         "node": "medicine schedule for this month",
         "final_answer": "here is your monthly medicine schedule"
     },
     "medicine_schedule_specific_day": {
         "node": "medicine schedule for specific day",
         "final_answer": "here is your medicine schedule for that specific day"
+    },
+    "medicine_schedule_specific_week": {
+        "node": "medicine schedule for specific week",
+        "final_answer": "here is your medicine schedule for that specific week"
+    },
+    "medicine_schedule_specific_month": {
+        "node": "medicine schedule for specific month",
+        "final_answer": "here is your medicine schedule for that specific month"
     },
 
     # Doctor appointment nodes
@@ -97,6 +56,41 @@ node_configs = {
         "node": "doctor appointment schedule for specific day",
         "final_answer": "here is your doctor appointment schedule for that specific day"
     },
+    "doctor_appointment_specific_week": {
+        "node": "doctor appointment schedule for specific week",
+        "final_answer": "here is your doctor appointment schedule for that specific week"
+    },
+    "doctor_appointment_specific_month": {
+        "node": "doctor appointment schedule for specific month",
+        "final_answer": "here is your doctor appointment schedule for that specific month"
+    },
+
+    # Health activity nodes
+    "health_activity_today": {
+        "node": "health activity schedule for today",
+        "final_answer": "here is your health activity schedule for today"
+    },
+    "health_activity_weekly": {
+        "node": "health activity schedule for this week",
+        "final_answer": "here is your weekly health activity schedule"
+    },
+    "health_activity_monthly": {
+        "node": "health activity schedule for this month",
+        "final_answer": "here is your monthly health activity schedule"
+    },
+    "health_activity_specific_day": {
+        "node": "health activity schedule for specific day",
+        "final_answer": "here is your health activity schedule for that specific day"
+    },
+    "health_activity_specific_week": {
+        "node": "health activity schedule for specific week",
+        "final_answer": "here is your health activity schedule for that specific week"
+    },
+    "health_activity_specific_month": {
+        "node": "health activity schedule for specific month",
+        "final_answer": "here is your health activity schedule for that specific month"
+    },
+
 
     # Social activity nodes
     "social_activity_today": {
@@ -114,6 +108,14 @@ node_configs = {
     "social_activity_specific_day": {
         "node": "social activity schedule for specific day",
         "final_answer": "here are your social activities for that specific day"
+    },
+    "social_activity_specific_week": {
+        "node": "social activity schedule for specific week",
+        "final_answer": "here are your social activities for that specific week"
+    },
+    "social_activity_specific_month": {
+        "node": "social activity schedule for specific month",
+        "final_answer": "here are your social activities for that specific month"
     },
 
     # Visit except doctor nodes
@@ -133,8 +135,32 @@ node_configs = {
         "node": "visit schedule specific day",
         "final_answer": "here is your visit schedule for that specific day"
     },
+    "visit_except_doctor_specific_week": {
+        "node": "visit schedule specific week",
+        "final_answer": "here is your visit schedule for that specific week"
+    },
+    "visit_except_doctor_specific_month": {
+        "node": "visit schedule specific month",
+        "final_answer": "here is your visit schedule for that specific month"
+    },
 
-
+    #Hardware Functionalities
+    "increase_screen_brightness" : {
+        "node" : "increase screen brightness",
+        "final_answer": "Screen brightness increased"
+    },
+    "reduce_screen_brightness" : {
+        "node" : "reduce screen brightness",
+        "final_answer": "Screen brightness reduced"
+    },
+    "increase_volume" : {
+        "node" : "increase volume",
+        "final_answer": "Volume increased"
+    },
+    "reduce_volume" : {
+        "node" : "reduce volume",
+        "final_answer": "Volume reduced"
+    },
     "greeting" : {
         "node": "greeting",
         "final_answer": "asking again"
@@ -150,41 +176,3 @@ node_configs = {
         "node": "no matching node",
         "final_answer": "i don't have an answer for you this time"
     }}
-
-INTENT_TO_NODE = {
-    # Medicine
-    "medicine schedule today": "medicine_today",
-    "medicine schedule weekly": "medicine_weekly",
-    "medicine schedule monthly": "medicine_monthly",
-    "medicine schedule specific day": "medicine_schedule_specific_day",
-
-    # Doctor Appointment
-    "doctor appointment schedule today": "doctor_appointment_today",
-    "doctor appointment schedule weekly": "doctor_appointment_weekly",
-    "doctor appointment schedule monthly": "doctor_appointment_monthly",
-    "doctor appointment schedule specific day": "doctor_appointment_specific_day",
-
-    # Social Activity
-    "social activity schedule today": "social_activity_today",
-    "social activity schedule weekly": "social_activity_weekly",
-    "social activity schedule monthly": "social_activity_monthly",
-    "social activity schedule specific day": "social_activity_specific_day",
-
-    # Visit Except Doctor
-    "visit except doctor schedule today": "visit_except_doctor_today",
-    "visit except doctor schedule weekly": "visit_except_doctor_weekly",
-    "visit except doctor schedule monthly": "visit_except_doctor_monthly",
-    "visit except doctor schedule specific day": "visit_except_doctor_specific_day",
-
-    # Fall Detection
-    "fall": "fall",
-    "help": "help",
-    "i am ok": "i_am_ok",
-
-    "greeting": "greeting",
-    "call assistant" : "call_assistant"
-}
-
-UNNAVIGATOR_INTENT = [
-    "other topics","other","greeting"
-]
