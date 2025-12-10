@@ -1,0 +1,29 @@
+name : cd
+
+on : 
+  push:
+    branches:
+      - "master"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+    
+      - name: Deploy and restart Uvicorn app
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            cd elderly-care-server-refactored
+
+            git pull origin master
+
+            pkill -f "uvicorn" || true
+
+            nohup uvicorn main:app --host 0.0.0.0 --port 8080 > log.txt 2>&1 &
