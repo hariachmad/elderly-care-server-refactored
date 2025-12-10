@@ -11,7 +11,7 @@ INTENT_TO_NODE = {
     "health activity today": "health_activity_today",
     "health activity weekly": "health_activity_week",
     "health activity monthly": "health_activity_month",
-    "health activity specific day": "health_activity_specific_day",
+    "health activity specific day": "health_activity_sp\ecific_day",
     "health activity specific week": "health_activity_specific_week",
     "health activity specific month": "health_activity_specific_month",
 

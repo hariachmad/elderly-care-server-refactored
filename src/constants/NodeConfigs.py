@@ -39,28 +39,28 @@ node_configs = {
     },
 
     # Doctor appointment nodes
-    "doctor_appointment_today": {
+    "doctor_appointment_schedule_today": {
         "node": "doctor appointment schedule for today",
         "final_answer": "here is your doctor appointment schedule for today"
     },
-    "doctor_appointment_weekly": {
+    "doctor_appointment_schedule_weekly": {
         "node": "doctor appointment schedule for this week",
         "final_answer": "here is your weekly doctor appointment schedule"
     }
 ,
-    "doctor_appointment_monthly": {
+    "doctor_appointment_schedule_monthly": {
         "node": "doctor appointment schedule for this month",
         "final_answer": "here is your monthly doctor appointment schedule"
     },
-    "doctor_appointment_specific_day": {
+    "doctor_appointment_schedule_specific_day": {
         "node": "doctor appointment schedule for specific day",
         "final_answer": "here is your doctor appointment schedule for that specific day"
     },
-    "doctor_appointment_specific_week": {
+    "doctor_appointment_schedule_specific_week": {
         "node": "doctor appointment schedule for specific week",
         "final_answer": "here is your doctor appointment schedule for that specific week"
     },
-    "doctor_appointment_specific_month": {
+    "doctor_appointment_schedule_specific_month": {
         "node": "doctor appointment schedule for specific month",
         "final_answer": "here is your doctor appointment schedule for that specific month"
     },
@@ -93,53 +93,53 @@ node_configs = {
 
 
     # Social activity nodes
-    "social_activity_today": {
+    "social_activity_schedule_today": {
         "node": "social activity schedule for today",
         "final_answer": "here are your social activities for today"
     },
-    "social_activity_weekly": {
+    "social_activity_schedule_weekly": {
         "node": "social activity schedule for this week",
         "final_answer": "here are your weekly social activities"
     },
-    "social_activity_monthly": {
+    "social_activity_schedule_monthly": {
         "node": "social activity schedule for this month",
         "final_answer": "here are your monthly social activities"
     },
-    "social_activity_specific_day": {
+    "social_activity_schedule_specific_day": {
         "node": "social activity schedule for specific day",
         "final_answer": "here are your social activities for that specific day"
     },
-    "social_activity_specific_week": {
+    "social_activity_schedule_specific_week": {
         "node": "social activity schedule for specific week",
         "final_answer": "here are your social activities for that specific week"
     },
-    "social_activity_specific_month": {
+    "social_activity_schedule_specific_month": {
         "node": "social activity schedule for specific month",
         "final_answer": "here are your social activities for that specific month"
     },
 
     # Visit except doctor nodes
-    "visit_except_doctor_today": {
+    "visits_today": {
         "node": "visit schedule for today",
         "final_answer": "here is your visit schedule for today"
     },
-    "visit_except_doctor_weekly": {
+    "visits_week": {
         "node": "visit schedule for this week",
         "final_answer": "here is your weekly visit schedule"
     },
-    "visit_except_doctor_monthly": {
+    "visits_month": {
         "node": "visit schedule for this month",
         "final_answer": "here is your monthly visit schedule"
     },
-    "visit_except_doctor_specific_day": {
+    "visits_specific_day": {
         "node": "visit schedule specific day",
         "final_answer": "here is your visit schedule for that specific day"
     },
-    "visit_except_doctor_specific_week": {
+    "visits_specific_week": {
         "node": "visit schedule specific week",
         "final_answer": "here is your visit schedule for that specific week"
     },
-    "visit_except_doctor_specific_month": {
+    "visits_specific_month": {
         "node": "visit schedule specific month",
         "final_answer": "here is your visit schedule for that specific month"
     },
