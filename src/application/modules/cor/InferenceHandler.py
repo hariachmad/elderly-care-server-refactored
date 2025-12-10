@@ -62,6 +62,16 @@ RULES:
   * If user mentions an exact month name (e.g., January, February, Maret) or "bulan ke-3", "next month", "this month" → use intent with 'monthly'.
   * Do NOT use 'specific month' because only 'monthly' is available in predefined intents.
 
+- ACTIVITY TYPE:
+  * HEALTH ACTIVITY:
+      - Activities involving exercise or physical movement.
+      - Examples: yoga, ballroom dance, gym, aerobics, pilates, stretching, tai chi.
+  * SOCIAL ACTIVITY:
+      - Activities focused on social interaction, games, or entertainment.
+      - Examples: bingo, board games, card games, chess, trivia night, movie night.
+
+- If the user mentions an activity, classify based on these definitions.
+
 - If no clear match → 'other topics'.
 
 INSTRUCTIONS:
