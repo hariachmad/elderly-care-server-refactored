@@ -53,15 +53,15 @@ class InferenceHandler(Handler):
             RULES:
             - DAY:
             * If user mentions an exact day (e.g., Monday, Tuesday, Rabu, Jumat, "on Friday", "tanggal 12") → use intent with 'specific day'.
-            * If user only says 'daily', 'every day', 'harian' without naming a specific day → use intent with 'today' or 'daily' depending on available intents.
+            * If user only says 'daily','today','this day', 'every day', 'harian' without naming a specific day → use intent with 'today' or 'daily' depending on available intents.
 
             - WEEK:
             * If user mentions an exact week (e.g., "next week", "week of 12th", "minggu depan") → use intent with 'specific week'.
-            * If user only says 'weekly', 'every week', 'mingguan' without naming a specific week → use intent with 'weekly'.
+            * If user only says 'weekly','this week',' 'every week', 'mingguan' without naming a specific week → use intent with 'weekly'.
 
             - MONTH:
             * If user mentions an exact month (e.g., January, February, March, "bulan Maret", "next month") → use intent with 'specific month'.
-            * If user only says 'monthly', 'every month', 'bulanan' without naming a specific month → use intent with 'monthly'.
+            * If user only says 'monthly', 'every month','this month',' 'bulanan' without naming a specific month → use intent with 'monthly'.
 
             - If no clear match → 'other topics'.
 
