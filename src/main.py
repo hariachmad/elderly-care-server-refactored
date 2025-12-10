@@ -33,7 +33,7 @@ async def startup_event():
     tts= TtsClient() #singleton initialization #noqa
     global model_whisper
     loop = asyncio.get_event_loop()
-    model_whisper = await loop.run_in_executor(None, whisper.load_model, "small")
+    model_whisper = await loop.run_in_executor(None, whisper.load_model, "medium")
     print("✅ Whisper model loaded successfully!")
     llm.invoke("Lets Warm Up")
     print("✅ Warm-up finished!")
