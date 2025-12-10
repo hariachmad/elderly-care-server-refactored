@@ -24,7 +24,7 @@ jobs:
 
             git pull origin master
 
-            cd /src
+            cd src
 
             pkill -f "uvicorn" || true
 
