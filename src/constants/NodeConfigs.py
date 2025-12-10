@@ -99,11 +99,11 @@ node_configs = {
         "node": "social activity schedule for today",
         "final_answer": "here are your social activities for today"
     },
-    "social_activity_weekly": {
+    "social_activity_week": {
         "node": "social activity schedule for this week",
         "final_answer": "here are your weekly social activities"
     },
-    "social_activity_monthly": {
+    "social_activity_month": {
         "node": "social activity schedule for this month",
         "final_answer": "here are your monthly social activities"
     },
