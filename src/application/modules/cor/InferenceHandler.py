@@ -44,70 +44,34 @@ class InferenceHandler(Handler):
         #     )
 
         prompt = PromptTemplate(
-            template="""You are an advanced intent classifier for a healthcare assistant system.
+                template="""You are an intent classifier.
+            Choose the most appropriate intent from the following list:
+            {intents}
 
-        Your task is to classify the user's query into the most appropriate intent from the provided list.
+            User input: {user_input}
 
-        CRITICAL DISTINCTION RULES:
-        1. **DOCTOR APPOINTMENT** → Only for medical professionals (doctors, nurses, therapists, medical staff)
-        2. **VISIT EXCEPT DOCTOR** → For non-medical visitors (family, friends, neighbors, social visitors)
-        3. Key phrases for visits: "friends", "family", "children", "grandchildren", "visitors", "guests"
+            RULES:
+            - DAY:
+            * If user mentions an exact day (e.g., Monday, Tuesday, Rabu, Jumat, "on Friday", "tanggal 12") → use intent with 'specific day'.
+            * If user only says 'daily', 'every day', 'harian' without naming a specific day → use intent with 'today' or 'daily' depending on available intents.
 
-        IMPORTANT CONTEXT:
-        - This system is used by elderly patients for managing their health schedule.
-        - Always consider the context of medicine, appointments, activities, and device control.
-        - Be precise with time references: "today", "tomorrow", specific dates, or relative time periods.
+            - WEEK:
+            * If user mentions an exact week (e.g., "next week", "week of 12th", "minggu depan") → use intent with 'specific week'.
+            * If user only says 'weekly', 'every week', 'mingguan' without naming a specific week → use intent with 'weekly'.
 
-        AVAILABLE INTENTS:
-        {intents}
+            - MONTH:
+            * If user mentions an exact month (e.g., January, February, March, "bulan Maret", "next month") → use intent with 'specific month'.
+            * If user only says 'monthly', 'every month', 'bulanan' without naming a specific month → use intent with 'monthly'.
 
-        USER'S QUERY:
-        {user_input}
+            - If no clear match → 'other topics'.
 
-        ANALYSIS STEPS:
-        1. Identify if the query is about scheduled appointments/visits
-        2. Determine the visitor type:
-           - Medical professional → DOCTOR APPOINTMENT
-           - Family/Friends → VISIT EXCEPT DOCTOR
-        3. Check time period: today, weekly, monthly, or specific date
-        4. Select the most specific matching intent
-
-        INSTRUCTIONS:
-        1. Analyze the query carefully.
-        2. Match the query to the most specific intent possible.
-        3. Consider synonyms and similar phrasings.
-        4. If the query doesn't clearly match any intent, choose "other topics".
-        5. Pay special attention to time references (today, weekly, monthly, specific dates).
-
-        {format_instructions}
-
-        EXAMPLES FOR REFERENCE:
-        - "What medicine should I take today?" → medicine schedule today
-        - "Show my doctor appointments next week" → doctor appointment schedule specific week
-        - "Turn up the brightness" → Increase Screen's Brightness
-        - "Help!" → help
-        - "When is my doctor visit?" → doctor appointment schedule today (implied)
-        - "Nurse coming tomorrow" → doctor appointment schedule specific day
-        - "My daughter visiting this week" → visit except doctor schedule specific week
-        - "Friends coming over on Friday" → visit except doctor schedule specific day
-        - "Therapist appointment next month" → doctor appointment schedule specific month
-        - "Family visits in March" → visit except doctor schedule specific month
-
-        SPECIAL CASE: "What visits do I have scheduled for my friends in this month?"
-        - Mentions "friends" → NON-MEDICAL VISIT
-        - Time period: "this month" → MONTHLY
-        - Correct intent: visit except doctor schedule monthly
-
-        Remember: When in doubt about visitor type, check for keywords:
-        - Medical: doctor, nurse, therapist, clinic, hospital, checkup, treatment
-        - Social: friends, family, children, grandchildren, visitors, guests, coming over
-        """,
-            input_variables=["intents", "user_input"],
-            partial_variables={
-                "format_instructions": parser.get_format_instructions(),
-            }
+            {format_instructions}""",
+                input_variables=["intents", "user_input"],
+                partial_variables={
+                    "format_instructions": parser.get_format_instructions(),
+                }
         )
-        
+
         model = os.getenv("LLM_MODEL")
         temperature = int(os.getenv("LLM_TEMPERATURE", "0"))
         base_url = os.getenv("LLM_BASE_URL", "http://localhost:11434/")
