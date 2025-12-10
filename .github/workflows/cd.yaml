@@ -20,9 +20,11 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.  }}
           script: |
-            cd elderly-care-server-refactored/src
+            cd elderly-care-server-refactored
 
             git pull origin master
+
+            cd /src
 
             pkill -f "uvicorn" || true
 
