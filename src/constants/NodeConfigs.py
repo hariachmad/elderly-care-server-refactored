@@ -93,27 +93,27 @@ node_configs = {
 
 
     # Social activity nodes
-    "social_activity_schedule_today": {
+    "social_activity_today": {
         "node": "social activity schedule for today",
         "final_answer": "here are your social activities for today"
     },
-    "social_activity_schedule_weekly": {
+    "social_activity_weekly": {
         "node": "social activity schedule for this week",
         "final_answer": "here are your weekly social activities"
     },
-    "social_activity_schedule_monthly": {
+    "social_activity_monthly": {
         "node": "social activity schedule for this month",
         "final_answer": "here are your monthly social activities"
     },
-    "social_activity_schedule_specific_day": {
+    "social_activity_specific_day": {
         "node": "social activity schedule for specific day",
         "final_answer": "here are your social activities for that specific day"
     },
-    "social_activity_schedule_specific_week": {
+    "social_activity_specific_week": {
         "node": "social activity schedule for specific week",
         "final_answer": "here are your social activities for that specific week"
     },
-    "social_activity_schedule_specific_month": {
+    "social_activity_specific_month": {
         "node": "social activity schedule for specific month",
         "final_answer": "here are your social activities for that specific month"
     },
