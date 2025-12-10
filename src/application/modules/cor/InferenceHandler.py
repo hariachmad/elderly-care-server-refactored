@@ -55,12 +55,21 @@ RULES:
   * If user mentions an exact day name (e.g., Monday, Tuesday, Rabu, Jumat) or a specific date (e.g., "on 12th", "tanggal 5") → use intent with 'specific day'.
 
 - WEEK:
-  * If user mentions "week X", "minggu ke-2", "next week", "this week" → use intent with 'weekly'.
-  * Do NOT use 'specific week' because only 'weekly' is available in predefined intents.
+  * If user mentions "week", "week X", "week number", "minggu ke-X", 
+    "minggu depan", "next week", "this week", "week of <date>" 
+    → classify as 'weekly'.
+  * If user mentions a week combined with a month or year 
+    (e.g., "third week of January", "minggu pertama 2026")
+    → still classify as 'weekly'.
+  * A week NEVER counts as a specific day.
+  * There is NO 'specific week' intent, so always use 'weekly'.
 
 - MONTH:
-  * If user mentions an exact month name (e.g., January, February, Maret) or "bulan ke-3", "next month", "this month" → use intent with 'monthly'.
-  * Do NOT use 'specific month' because only 'monthly' is available in predefined intents.
+  * If user mentions an exact month name (January, February, Maret, etc.)
+    OR a month combined with a year (e.g., "January 2026", "Maret 2024")
+    → use intent with 'monthly'.
+  * Do NOT classify month references as 'specific day'.
+  * Only use 'monthly' because 'specific month' is not available in predefined intents.
 
 - ACTIVITY TYPE:
   * HEALTH ACTIVITY:
@@ -73,6 +82,31 @@ RULES:
 - If the user mentions an activity, classify based on these definitions.
 
 - If no clear match → 'other topics'.
+
+- VISIT vs DOCTOR APPOINTMENT:
+
+  * doctor appointment:
+    - If the visitor is a medical professional:
+      * doctor / dokter
+      * nurse / perawat
+      * caregiver
+      * physiotherapist / fisioterapis
+      * therapist
+      * medical staff / tenaga medis
+    → classify as 'doctor appointment'.
+
+  * visit except doctor:
+    - If the visitor is NOT a medical professional:
+      * family (keluarga)
+      * friends (teman)
+      * neighbors (tetangga)
+      * volunteers
+      * guests
+      * general visitors
+    → classify as 'visit except doctor'.
+
+  * If the visitor is ambiguous and no clear indication of medical role:
+    → default to 'visit except doctor'.
 
 INSTRUCTIONS:
 1. Match the query to the most specific intent possible.
