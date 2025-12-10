@@ -26,7 +26,6 @@ predefined_intents = [
 
 
     #Event
-    "fall",
     "help",
     "i am ok",
     "i am not ok",

@@ -7,10 +7,6 @@ node_configs = {
         "node": "i am ok",
         "final_answer": "Glad to know you are safe"
     },
-    "fall" : {
-        "node": "fall",
-        "final_answer": "Hi, Do you need any help"
-    },
     "i_am_not_ok" : {
         "node": "i am not ok",
         "final_answer": "Glad to know you are safe"

@@ -25,7 +25,6 @@ INTENT_TO_NODE = {
     "visit except doctor schedule specific day": "visits_specific_day",
 
     # Alert Detection
-    "fall": "fall",
     "help": "help",
     "i am ok": "i_am_ok",
     "i am not ok" : "i_am_not_ok",
