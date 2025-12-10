@@ -70,11 +70,11 @@ node_configs = {
         "node": "health activity schedule for today",
         "final_answer": "here is your health activity schedule for today"
     },
-    "health_activity_weekly": {
+    "health_activity_week": {
         "node": "health activity schedule for this week",
         "final_answer": "here is your weekly health activity schedule"
     },
-    "health_activity_monthly": {
+    "health_activity_month": {
         "node": "health activity schedule for this month",
         "final_answer": "here is your monthly health activity schedule"
     },
