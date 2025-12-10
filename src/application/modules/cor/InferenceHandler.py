@@ -29,19 +29,56 @@ class InferenceHandler(Handler):
         )
         ]
         parser = StructuredOutputParser.from_response_schemas(response_schemas)
+        # prompt = PromptTemplate(
+        #         template="""You are an intent classifier.
+        #     Choose the most appropriate intent from the following list:
+        #     {intents}
+
+        #     User input: {user_input}
+
+        #     {format_instructions}""",
+        #         input_variables=["intents", "user_input"],
+        #         partial_variables={
+        #             "format_instructions": parser.get_format_instructions(),
+        #         }
+        #     )
+
         prompt = PromptTemplate(
-                template="""You are an intent classifier.
-            Choose the most appropriate intent from the following list:
-            {intents}
-
-            User input: {user_input}
-
-            {format_instructions}""",
-                input_variables=["intents", "user_input"],
-                partial_variables={
-                    "format_instructions": parser.get_format_instructions(),
-                }
-            )
+            template="""You are an advanced intent classifier for a healthcare assistant system.
+        
+        Your task is to classify the user's query into the most appropriate intent from the provided list.
+        
+        IMPORTANT CONTEXT:
+        - This system is used by elderly patients for managing their health schedule.
+        - Always consider the context of medicine, appointments, activities, and device control.
+        - Be precise with time references: "today", "tomorrow", specific dates, or relative time periods.
+        
+        AVAILABLE INTENTS:
+        {intents}
+        
+        USER'S QUERY:
+        {user_input}
+        
+        INSTRUCTIONS:
+        1. Analyze the query carefully.
+        2. Match the query to the most specific intent possible.
+        3. Consider synonyms and similar phrasings.
+        4. If the query doesn't clearly match any intent, choose "other topics".
+        5. Pay special attention to time references (today, weekly, monthly, specific dates).
+        
+        {format_instructions}
+        
+        EXAMPLES FOR REFERENCE:
+        - "What medicine should I take today?" → medicine schedule today
+        - "Show my doctor appointments next week" → doctor appointment schedule specific week
+        - "Turn up the brightness" → Increase Screen's Brightness
+        - "Help!" → help
+        """,
+            input_variables=["intents", "user_input"],
+            partial_variables={
+                "format_instructions": parser.get_format_instructions(),
+            }
+        )
         
         model = os.getenv("LLM_MODEL")
         temperature = int(os.getenv("LLM_TEMPERATURE", "0"))

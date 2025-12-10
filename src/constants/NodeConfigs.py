@@ -11,8 +11,10 @@ node_configs = {
         "node": "fall",
         "final_answer": "Hi, Do you need any help"
     },
-
-
+    "i_am_not_ok" : {
+        "node": "i am not ok",
+        "final_answer": "Glad to know you are safe"
+    },
     "medicine_schedule_today": {
         "node": "medicine schedule for today",
         "final_answer": "here is your medicine schedule for today"
