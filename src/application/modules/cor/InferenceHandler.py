@@ -44,33 +44,37 @@ class InferenceHandler(Handler):
         #     )
 
         prompt = PromptTemplate(
-                template="""You are an intent classifier.
-            Choose the most appropriate intent from the following list:
-            {intents}
+    template="""You are an intent classifier.
+Choose the most appropriate intent from the following list:
+{intents}
 
-            User input: {user_input}
+User input: {user_input}
 
-            RULES:
-            - DAY:
-            * If user mentions an exact day (e.g., Monday, Tuesday, Rabu, Jumat, "on Friday", "tanggal 12") → use intent with 'specific day'.
-            * If user only says 'daily','today','this day', 'every day', 'harian' without naming a specific day → use intent with 'today' or 'daily' depending on available intents.
+RULES:
+- DAY:
+  * If user mentions an exact day name (e.g., Monday, Tuesday, Rabu, Jumat) or a specific date (e.g., "on 12th", "tanggal 5") → use intent with 'specific day'.
 
-            - WEEK:
-            * If user mentions an exact week (e.g., "next week", "week of 12th", "minggu depan") → use intent with 'specific week'.
-            * If user only says 'weekly','this week',' 'every week', 'mingguan' without naming a specific week → use intent with 'weekly'.
+- WEEK:
+  * If user mentions "week X", "minggu ke-2", "next week", "this week" → use intent with 'weekly'.
+  * Do NOT use 'specific week' because only 'weekly' is available in predefined intents.
 
-            - MONTH:
-            * If user mentions an exact month (e.g., January, February, March, "bulan Maret", "next month") → use intent with 'specific month'.
-            * If user only says 'monthly', 'every month','this month',' 'bulanan' without naming a specific month → use intent with 'monthly'.
+- MONTH:
+  * If user mentions an exact month name (e.g., January, February, Maret) or "bulan ke-3", "next month", "this month" → use intent with 'monthly'.
+  * Do NOT use 'specific month' because only 'monthly' is available in predefined intents.
 
-            - If no clear match → 'other topics'.
+- If no clear match → 'other topics'.
 
-            {format_instructions}""",
-                input_variables=["intents", "user_input"],
-                partial_variables={
-                    "format_instructions": parser.get_format_instructions(),
-                }
-        )
+INSTRUCTIONS:
+1. Match the query to the most specific intent possible.
+2. Consider synonyms and similar phrasings (e.g., "mingguan" → weekly, "bulanan" → monthly, "harian" → specific day).
+3. Output MUST be one of the intents listed above.
+
+{format_instructions}""",
+    input_variables=["intents", "user_input"],
+    partial_variables={
+        "format_instructions": parser.get_format_instructions(),
+    }
+)
 
         model = os.getenv("LLM_MODEL")
         temperature = int(os.getenv("LLM_TEMPERATURE", "0"))

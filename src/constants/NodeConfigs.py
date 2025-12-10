@@ -45,12 +45,12 @@ node_configs = {
         "node": "doctor appointment schedule for today",
         "final_answer": "here is your doctor appointment schedule for today"
     },
-    "doctor_appointment_schedule_weekly": {
+    "doctor_appointment_schedule_week": {
         "node": "doctor appointment schedule for this week",
         "final_answer": "here is your weekly doctor appointment schedule"
     }
 ,
-    "doctor_appointment_schedule_monthly": {
+    "doctor_appointment_schedule_month": {
         "node": "doctor appointment schedule for this month",
         "final_answer": "here is your monthly doctor appointment schedule"
     },
