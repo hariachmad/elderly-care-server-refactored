@@ -2,6 +2,7 @@ from datetime import datetime
 from langchain_core.prompts import PromptTemplate
 import dateparser
 import re
+import string
 
 def date_time_invoker(llm_, text):
     prompt_ = PromptTemplate(template=
@@ -39,6 +40,12 @@ def date_time_invoker(llm_, text):
 def blacklist_keyword_guard(blacklist_keywords, text)-> bool:
     pattern = re.compile(r"(" + "|".join(map(re.escape, blacklist_keywords)) + r")", re.IGNORECASE)
     return bool(pattern.search(text))
+
+def wake_word_guard(wake_word, text)-> bool:
+    print("wake word text: ", text['user_input'])
+    text_clean = text['user_input'].translate(str.maketrans("", "", string.punctuation))
+    pattern = re.compile(r"(" + "|".join(map(re.escape, wake_word)) + r")", re.IGNORECASE)
+    return bool(pattern.search(text_clean))
 
 def clean_for_tts(text):
     text = re.sub(r"[^\w\s.,!?]", "", text)

@@ -36,7 +36,6 @@ INTENT_TO_NODE = {
     "Increase Volume" : "increase_volume",
     "Reduce Volume" : "reduce_volume",
 
-
     #Communication
     "greeting": "greeting",
     

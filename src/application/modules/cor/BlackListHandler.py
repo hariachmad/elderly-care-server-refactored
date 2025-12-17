@@ -10,3 +10,4 @@ class BlackListHandler(Handler):
         if not blacklist_keyword_guard(medical_keywords,prompt):
             return super().handle(prompt)
         audioFileDispatcher.handle(State(final_answer="I'm sorry, I can't help you with that."))
+        return "I'm sorry, I can't help you with that."

@@ -2,6 +2,7 @@ from application.modules.cor.BlackListHandler import BlackListHandler
 from application.modules.cor.InferenceHandler import InferenceHandler
 from application.modules.cor.PageNavigatorHandler import PageNavigatorHandler
 from application.modules.cor.AudioFileDispatcherHandler import AudioFileDispatcherHandler
+from application.modules.cor.WakeWordHandler import WakeWordHandler
 from fastapi.responses import FileResponse
 from fastapi import FastAPI,File, UploadFile, Body
 import whisper
@@ -42,10 +43,11 @@ async def startup_event():
 async def uploadJson(payload : dict = Body(...)): #noqa
     start_time = datetime.datetime.now()  
     print(f"🚀 Start transcribing at: {start_time.strftime('%Y-%m-%d %H:%M:%S')}")
+    wake_word = WakeWordHandler()
     blacklist = BlackListHandler()
     inference = InferenceHandler()
     navigate = PageNavigatorHandler()
-    blacklist.set_next(inference).set_next(navigate)
+    blacklist.set_next(wake_word).set_next(inference).set_next(navigate)
     answer = blacklist.handle(payload["message"])
     end_time = datetime.datetime.now() 
     duration = (end_time - start_time).total_seconds()
@@ -69,9 +71,10 @@ async def uploadWithReplyJson(file: UploadFile = File(...)): #noqa
     print(result["text"])
     print("Transcribed with Whisper")
 
+    wake_word = WakeWordHandler()
     blacklist = BlackListHandler()
     inference = InferenceHandler()
-    blacklist.set_next(inference)
+    blacklist.set_next(wake_word).set_next(inference)
 
     answer = blacklist.handle(result["text"])
     end_time = datetime.datetime.now() 
@@ -98,18 +101,20 @@ async def upload(file: UploadFile = File(...)): #noqa
     print(result["text"])
     print("Transcribed with Whisper")
 
+    wake_word = WakeWordHandler()
     blacklist = BlackListHandler()
     inference = InferenceHandler()
     pageNavigator = PageNavigatorHandler()
     audioFileDispatcher = AudioFileDispatcherHandler()
-    blacklist.set_next(inference).set_next(pageNavigator).set_next(audioFileDispatcher)
+    blacklist.set_next(inference).set_next(wake_word).set_next(pageNavigator).set_next(audioFileDispatcher)
 
-    blacklist.handle(result["text"])
+    meta_data_text = blacklist.handle(result["text"])
     end_time = datetime.datetime.now() 
     duration = (end_time - start_time).total_seconds()
     print(f"🏁 Finished at: {end_time.strftime('%Y-%m-%d %H:%M:%S')} (Duration: {duration:.2f} seconds)")
     return FileResponse(
         os.path.join(REPLY_DIR, "reply.wav"),
         media_type="audio/wav",
-        filename="processed.wav"
+        filename="processed.wav",
+        headers={"X-Metadata-Text": meta_data_text}
     )
