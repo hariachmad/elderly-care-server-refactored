@@ -124,13 +124,14 @@ INSTRUCTIONS:
         temperature = int(os.getenv("LLM_TEMPERATURE", "0"))
         base_url = os.getenv("LLM_BASE_URL", "http://localhost:11434/")
         llm = LlmClient(model, temperature, base_url).instance
-        dt_entities = date_time_invoker(llm,input)
         aiAgent = AiAgentBuilder().set_predefined_intents(predefined_intents).set_blacklist_keywords(medical_keywords).set_prompt_template(prompt).set_llm(llm).set_parser(parser).build()
-        node = Node(predefined_intents, aiAgent.chain, dt_entities)
+        node = Node(predefined_intents, aiAgent.chain)
         workflow = WorkflowBuilder().set_nodes(node).set_node_configs(node_configs).build()
         graph = GraphBuilder().set_workflow(workflow).build()
         answer = graph.instance.invoke({"intents": predefined_intents,"user_input": input})
         result = AnswerBuilder().set_llm(llm).set_answer(answer).set_ask_llm_answers(["asking again"]).build()
+        dt = date_time_invoker(llm,input,result["intent"])
+        result["date"] = dt
         if super().handle(result) is None:
             return result
         return super().handle(result)
