@@ -43,11 +43,11 @@ async def startup_event():
 async def uploadJson(payload : dict = Body(...)): #noqa
     start_time = datetime.datetime.now()  
     print(f"🚀 Start transcribing at: {start_time.strftime('%Y-%m-%d %H:%M:%S')}")
-    wake_word = WakeWordHandler()
+    # wake_word = WakeWordHandler()
     blacklist = BlackListHandler()
     inference = InferenceHandler()
     navigate = PageNavigatorHandler()
-    blacklist.set_next(wake_word).set_next(inference).set_next(navigate)
+    blacklist.set_next(inference).set_next(navigate)
     answer = blacklist.handle(payload["message"])
     end_time = datetime.datetime.now() 
     duration = (end_time - start_time).total_seconds()
@@ -116,5 +116,4 @@ async def upload(file: UploadFile = File(...)): #noqa
         os.path.join(REPLY_DIR, "reply.wav"),
         media_type="audio/wav",
         filename="processed.wav",
-        headers={"X-Metadata-Text": meta_data_text}
     )
