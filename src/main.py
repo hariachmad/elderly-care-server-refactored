@@ -101,12 +101,11 @@ async def upload(file: UploadFile = File(...)): #noqa
     print(result["text"])
     print("Transcribed with Whisper")
 
-    wake_word = WakeWordHandler()
     blacklist = BlackListHandler()
     inference = InferenceHandler()
     pageNavigator = PageNavigatorHandler()
     audioFileDispatcher = AudioFileDispatcherHandler()
-    blacklist.set_next(inference).set_next(wake_word).set_next(pageNavigator).set_next(audioFileDispatcher)
+    blacklist.set_next(inference).set_next(pageNavigator).set_next(audioFileDispatcher)
 
     meta_data_text = blacklist.handle(result["text"])
     end_time = datetime.datetime.now() 

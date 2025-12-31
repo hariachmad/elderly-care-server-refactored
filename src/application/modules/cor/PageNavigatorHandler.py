@@ -10,8 +10,9 @@ class PageNavigatorHandler(Handler):
     def handle(self, state)->bool:
         intent = state["intent"]
         path = INTENT_TO_NODE[intent]
-        for key in state["date"]:
-            path = path+"/"+str(state["date"][key])
+        if state["date"]: 
+            for key in state["date"]:
+                path = path+"/"+str(state["date"][key])
         if intent not in UNNAVIGATOR_INTENT:
             self.sio.instance.emit("navigateCommand",f"/{path}")
             if super().handle(state) is None:
