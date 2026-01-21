@@ -38,5 +38,8 @@ INTENT_TO_NODE = {
 
     #Communication
     "greeting": "greeting",
+
+    "other": "other",
+    "other topics": "other",
     
 }

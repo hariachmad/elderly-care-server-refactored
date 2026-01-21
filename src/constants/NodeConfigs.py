@@ -173,4 +173,19 @@ node_configs = {
     "final": {
         "node": "no matching node",
         "final_answer": "i don't have an answer for you this time"
-    }}
+    },
+
+    "other": {
+        "node": "no matching node",
+        "final_answer": "i don't have an answer for you this time"
+    },
+
+    "other_topics": {
+        "node": "no matching node",
+        "final_answer": "i don't have an answer for you this time"
+    },
+    
+    }
+
+
+
