@@ -1,13 +1,13 @@
 asyncapi: '2.6.0'
 
 info:
-  title: TAKA MQTT Contract
+  title: ELDERLY - SOCKET IO CONTRACT
   version: '1.0.0'
   description: socketIO API contract for elderly care robot
 
 servers:
   production:
-    url: mqtt://localhost:3000
+    url: localhost:3000
     protocol: mqtt
 
 channels:
