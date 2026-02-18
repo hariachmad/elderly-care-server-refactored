@@ -29,19 +29,6 @@ class InferenceHandler(Handler):
         )
         ]
         parser = StructuredOutputParser.from_response_schemas(response_schemas)
-        # prompt = PromptTemplate(
-        #         template="""You are an intent classifier.
-        #     Choose the most appropriate intent from the following list:
-        #     {intents}
-
-        #     User input: {user_input}
-
-        #     {format_instructions}""",
-        #         input_variables=["intents", "user_input"],
-        #         partial_variables={
-        #             "format_instructions": parser.get_format_instructions(),
-        #         }
-        #     )
 
         prompt = PromptTemplate(
     template="""You are an intent classifier.

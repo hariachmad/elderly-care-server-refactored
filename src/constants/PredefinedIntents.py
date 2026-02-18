@@ -1,26 +1,26 @@
 predefined_intents = [
     # Medicine
-    "medicine schedule weekly",
-    "medicine schedule monthly",
+    "medicine schedule week",
+    "medicine schedule month",
     "medicine schedule specific day",
 
     # Doctor Appointment
-    "doctor appointment schedule weekly",
-    "doctor appointment schedule monthly",
+    "doctor appointment schedule week",
+    "doctor appointment schedule month",
     "doctor appointment schedule specific day",
 
     # Health Activity
-    "health activity weekly",
-    "health activity monthly",
+    "health activity week",
+    "health activity month",
     "health activity specific day",
 
     # Social Activity
-    "social activity schedule weekly",
-    "social activity schedule monthly",
+    "social activity schedule week",
+    "social activity schedule month",
     "social activity schedule specific day",
 
     # Visit Except Doctor
-    "visit except doctor schedule weekly",
+    "visit except doctor schedule week",
     "visit except doctor schedule monthly",
     "visit except doctor schedule specific day",
 
@@ -28,16 +28,23 @@ predefined_intents = [
     #Event
     "help",
     "i am ok",
-    "i am not ok",
+    "i have problem",
 
     #Hardware Functionalities
     "Increase Screen's Brightness",
-    "Reduce Screen's Brightness",
+    "Decrease Screen's Brightness",
     "Increase Volume",
-    "Reduce Volume",
+    "Decrease Volume",
 
     "greeting",
     "call assistant",
 
-    "other topics"
+    "other topics",
+
+    #new
+    "Turn off",
+    "Reset",
+    "Restart",
+
+    "my body is fall"
 ]

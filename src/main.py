@@ -43,7 +43,6 @@ async def startup_event():
 async def uploadJson(payload : dict = Body(...)): #noqa
     start_time = datetime.datetime.now()  
     print(f"🚀 Start transcribing at: {start_time.strftime('%Y-%m-%d %H:%M:%S')}")
-    # wake_word = WakeWordHandler()
     blacklist = BlackListHandler()
     inference = InferenceHandler()
     navigate = PageNavigatorHandler()
@@ -97,7 +96,7 @@ async def upload(file: UploadFile = File(...)): #noqa
 
     print(f"File '{file.filename}' uploaded successfully!")
     print("🧠 Transcribing with Whisper...")
-    result = model_whisper.transcribe(file_path, language="english")
+    result = model_whisper.transcribe(file_path, language=os.getenv("WHISPER_LANGUAGE", "english"))
     print(result["text"])
     print("Transcribed with Whisper")
 

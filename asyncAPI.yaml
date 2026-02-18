@@ -1,0 +1,268 @@
+asyncapi: '2.6.0'
+
+info:
+  title: TAKA MQTT Contract
+  version: '1.0.0'
+  description: socketIO API contract for elderly care robot
+
+servers:
+  production:
+    url: mqtt://localhost:3000
+    protocol: mqtt
+
+channels:
+  SHOW_MEDICINE_SCHEDULE_SPECIFIC_DAY:
+    parameters:
+      day:
+        description: specific day number
+        schema:
+          type: integer
+          example: 18
+    publish:
+      summary: Request medicine schedule for specific day
+      message:
+        payload:
+          type : string
+          example: SHOW_MEDICINE_SCHEDULE_SPECIFIC_DAY/18
+  SHOW_MEDICINE_SCHEDULE_WEEK:
+    parameters:
+      week:
+        description: week number
+        schema:
+          type: integer
+          example: 2
+      year:
+        description: year number
+        schema:
+          type: integer
+          example: 2026    
+    publish:
+      summary: Request medicine schedule for week
+      message:
+        payload:
+          type : string
+          example: SHOW_MEDICINE_SCHEDULE_WEEK/2/2026
+  SHOW_MEDICINE_SCHEDULE_MONTH:
+    parameters:
+      month:
+        description: month number
+        schema:
+          type: integer
+          example: 5
+      year:
+        description: year number
+        schema:
+          type: integer
+          example: 2026    
+    publish:
+      summary: Request medicine schedule for month
+      message:
+        payload:
+          type : string
+          example: SHOW_MEDICINE_SCHEDULE_MONTH/5/2026
+  SHOW_APPOINTMENT_SCHEDULE_SPECIFIC_DAY:
+    parameters:
+      day:
+        description: specific day number
+        schema:
+          type: integer
+          example: 18
+    publish:
+      summary: Request appointment schedule for specific day
+      message:
+        payload:
+          type: string
+          example: SHOW_APPOINTMENT_SCHEDULE_SPECIFIC_DAY/18
+
+  SHOW_APPOINTMENT_SCHEDULE_WEEK:
+    parameters:
+      week:
+        description: week number
+        schema:
+          type: integer
+          example: 2
+      year:
+        description: year number
+        schema:
+          type: integer
+          example: 2026
+    publish:
+      summary: Request appointment schedule for week
+      message:
+        payload:
+          type: string
+          example: SHOW_APPOINTMENT_SCHEDULE_WEEK/2/2026
+
+  SHOW_APPOINTMENT_SCHEDULE_MONTH:
+    parameters:
+      month:
+        description: month number
+        schema:
+          type: integer
+          example: 5
+      year:
+        description: year number
+        schema:
+          type: integer
+          example: 2026
+    publish:
+      summary: Request appointment schedule for month
+      message:
+        payload:
+          type: string
+          example: SHOW_APPOINTMENT_SCHEDULE_MONTH/5/2026
+  SHOW_HEALTH_ACTIVITY_SPECIFIC_DAY:
+    parameters:
+      day:
+        description: specific day number
+        schema:
+          type: integer
+          example: 18
+    publish:
+      summary: Request health activity for specific day
+      message:
+        payload:
+          type: string
+          example: SHOW_HEALTH_ACTIVITY_SPECIFIC_DAY/18
+
+  SHOW_HEALTH_ACTIVITY_WEEK:
+    parameters:
+      week:
+        description: week number
+        schema:
+          type: integer
+          example: 2
+      year:
+        description: year number
+        schema:
+          type: integer
+          example: 2026
+    publish:
+      summary: Request health activity for week
+      message:
+        payload:
+          type: string
+          example: SHOW_HEALTH_ACTIVITY_WEEK/2/2026
+
+  SHOW_HEALTH_ACTIVITY_MONTH:
+    parameters:
+      month:
+        description: month number
+        schema:
+          type: integer
+          example: 5
+      year:
+        description: year number
+        schema:
+          type: integer
+          example: 2026
+    publish:
+      summary: Request health activity for month
+      message:
+        payload:
+          type: string
+          example: SHOW_HEALTH_ACTIVITY_MONTH/5/2026
+  SHOW_SOCIAL_ACTIVITY_SPECIFIC_DAY:
+    parameters:
+      day:
+        description: specific day number
+        schema:
+          type: integer
+          example: 18
+    publish:
+      summary: Request social activity for specific day
+      message:
+        payload:
+          type: string
+          example: SHOW_SOCIAL_ACTIVITY_SPECIFIC_DAY/18
+
+  SHOW_SOCIAL_ACTIVITY_WEEK:
+    parameters:
+      week:
+        description: week number
+        schema:
+          type: integer
+          example: 2
+      year:
+        description: year number
+        schema:
+          type: integer
+          example: 2026
+    publish:
+      summary: Request social activity for week
+      message:
+        payload:
+          type: string
+          example: SHOW_SOCIAL_ACTIVITY_WEEK/2/2026
+
+  SHOW_SOCIAL_ACTIVITY_MONTH:
+    parameters:
+      month:
+        description: month number
+        schema:
+          type: integer
+          example: 5
+      year:
+        description: year number
+        schema:
+          type: integer
+          example: 2026
+    publish:
+      summary: Request social activity for month
+      message:
+        payload:
+          type: string
+          example: SHOW_SOCIAL_ACTIVITY_MONTH/5/2026
+  SHOW_VISITS_SPECIFIC_DAY:
+    parameters:
+      day:
+        description: specific day number
+        schema:
+          type: integer
+          example: 18
+    publish:
+      summary: Request visits schedule for specific day
+      message:
+        payload:
+          type: string
+          example: SHOW_VISITS_SPECIFIC_DAY/18
+
+  SHOW_VISITS_WEEK:
+    parameters:
+      week:
+        description: week number
+        schema:
+          type: integer
+          example: 2
+      year:
+        description: year number
+        schema:
+          type: integer
+          example: 2026
+    publish:
+      summary: Request visits schedule for week
+      message:
+        payload:
+          type: string
+          example: SHOW_VISITS_WEEK/2/2026
+
+  SHOW_VISITS_MONTH:
+    parameters:
+      month:
+        description: month number
+        schema:
+          type: integer
+          example: 5
+      year:
+        description: year number
+        schema:
+          type: integer
+          example: 2026
+    publish:
+      summary: Request visits schedule for month
+      message:
+        payload:
+          type: string
+          example: SHOW_VISITS_MONTH/5/2026
+
+

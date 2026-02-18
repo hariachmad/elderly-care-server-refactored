@@ -11,9 +11,9 @@ month = today.strftime("%B")
 day = today.day
 
 def date_time_invoker(llm_, text, intent):
-    if "weekly" in intent.lower():
+    if "week" in intent.lower():
         return week_invoker(llm_, text)
-    if "monthly" in intent.lower():
+    if "month" in intent.lower():
         return month_invoker(llm_, text)
     if "day" in intent.lower():
         return day_invoker(llm_, text)

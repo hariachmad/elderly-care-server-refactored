@@ -1,0 +1,19 @@
+{
+  "name": "elderly-care-server-refactored",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hariachmad/elderly-care-server-refactored.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hariachmad/elderly-care-server-refactored/issues"
+  },
+  "homepage": "https://github.com/hariachmad/elderly-care-server-refactored#readme"
+}
