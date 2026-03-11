@@ -137,7 +137,17 @@ node_configs = {
     "DEVICE_RESTART" : {
         "node": "restart device",
         "final_answer": "Restarting device, Bye"
-    }
+    },
+
+    "ALARM_STOP" : {
+        "node": "stop alarm",
+        "final_answer": "Stopping alarm"
+    },
+
+    "ALARM_SNOOZE" : {
+        "node": "snooze alarm",
+        "final_answer": "Snoozing alarm"
+    },
 
     }
 

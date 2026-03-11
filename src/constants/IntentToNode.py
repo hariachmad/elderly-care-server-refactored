@@ -47,6 +47,10 @@ INTENT_TO_NODE = {
     "Reset" : "DEVICE_RESET",
     "Restart" : "DEVICE_RESTART",
 
-    "call assistant" : "INCIDENT_HELP_EVENT_DETECTED"
+    "call assistant" : "INCIDENT_HELP_EVENT_DETECTED",
+
+    "alarm stop" : "ALARM_STOP",
+
+    "alarm snooze" : "ALARM_SNOOZE"
     
 }

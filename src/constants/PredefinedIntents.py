@@ -46,5 +46,8 @@ predefined_intents = [
     "Reset",
     "Restart",
 
-    "my body is fall"
+    "my body is fall",
+
+    "alarm stop",
+    "alarm snooze"
 ]
