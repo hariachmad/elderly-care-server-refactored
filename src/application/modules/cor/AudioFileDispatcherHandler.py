@@ -4,7 +4,7 @@ from utils.utils import clean_for_tts
 from infrastructure.TtsClient import TtsClient
 
 class AudioFileDispatcherHandler(Handler):
-    def handle(self, state)->bool:
+    def handle(self, state, lang="en")->bool:
         tts = TtsClient()
         UPLOAD_DIR = "uploads"
         REPLY_DIR = "reply"

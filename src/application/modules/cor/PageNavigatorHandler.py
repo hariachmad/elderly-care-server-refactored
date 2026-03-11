@@ -8,7 +8,7 @@ class PageNavigatorHandler(Handler):
     def __init__(self):
         self.sio = SocketIoClient()
         super().__init__()
-    def handle(self, state)->bool:
+    def handle(self, state, lang="en")->bool:
         intent = state["intent"]
         node = INTENT_TO_NODE[intent]
         print("node: ", node)

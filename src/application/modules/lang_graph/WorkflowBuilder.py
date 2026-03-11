@@ -2,6 +2,7 @@ from langgraph.graph import StateGraph, END
 from application.modules.lang_graph.Node import Node
 from application.modules.lang_graph.Workflow import Workflow
 from application.modules.lang_graph.State import State
+from utils.utils import translate
 class WorkflowBuilder:
     def __init__(self): 
         self.nodes : Node = None
@@ -16,7 +17,7 @@ class WorkflowBuilder:
         self.node_configs = node_configs
         return self
     
-    def build(self):
+    def build(self, lang):
         if self.node_configs is None:
             raise ValueError("node_configs must be set")
         
@@ -25,7 +26,7 @@ class WorkflowBuilder:
         for node_name, schedule_type in self.node_configs.items():
             self.workflow.add_node(
             node_name, 
-            lambda state, st=schedule_type: {"final_answer": st["final_answer"]})
+            lambda state, st=schedule_type: {"final_answer": translate(lang,st["message_key"])})
         
         self.workflow.add_node("router", lambda state: state)
 

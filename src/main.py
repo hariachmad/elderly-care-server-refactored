@@ -47,7 +47,7 @@ async def uploadJson(payload : dict = Body(...)): #noqa
     inference = InferenceHandler()
     navigate = PageNavigatorHandler()
     blacklist.set_next(inference).set_next(navigate)
-    answer = blacklist.handle(payload["message"])
+    answer = blacklist.handle(payload["message"], payload["lang"])
     end_time = datetime.datetime.now() 
     duration = (end_time - start_time).total_seconds()
     print(f"🏁 Finished at: {end_time.strftime('%Y-%m-%d %H:%M:%S')} (Duration: {duration:.2f} seconds)")

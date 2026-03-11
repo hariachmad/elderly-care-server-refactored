@@ -5,7 +5,7 @@ from application.modules.lang_graph.State import State
 from application.modules.cor.AudioFileDispatcherHandler import AudioFileDispatcherHandler
 
 class WakeWordHandler(Handler):
-    def handle(self, prompt)->bool:
+    def handle(self, prompt, lang="en")->bool:
         audioFileDispatcher = AudioFileDispatcherHandler()
         if not wake_word_guard(wake_words,prompt):
             return super().handle(prompt)

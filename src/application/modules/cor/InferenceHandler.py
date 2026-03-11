@@ -15,7 +15,7 @@ from langchain_core.prompts import PromptTemplate
 from dotenv import load_dotenv
 
 class InferenceHandler(Handler):
-    def handle(self,input)->bool:
+    def handle(self,input, lang="en")->bool:
         load_dotenv()     
         response_schemas = [
         ResponseSchema(
@@ -113,7 +113,7 @@ INSTRUCTIONS:
         llm = LlmClient(model, temperature, base_url).instance
         aiAgent = AiAgentBuilder().set_predefined_intents(predefined_intents).set_blacklist_keywords(medical_keywords).set_prompt_template(prompt).set_llm(llm).set_parser(parser).build()
         node = Node(predefined_intents, aiAgent.chain)
-        workflow = WorkflowBuilder().set_nodes(node).set_node_configs(node_configs).build()
+        workflow = WorkflowBuilder().set_nodes(node).set_node_configs(node_configs).build(lang)
         graph = GraphBuilder().set_workflow(workflow).build()
         answer = graph.instance.invoke({"intents": predefined_intents,"user_input": input})
         result = AnswerBuilder().set_llm(llm).set_answer(answer).set_ask_llm_answers(["asking again"]).build()

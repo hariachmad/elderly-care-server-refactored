@@ -4,6 +4,7 @@ import dateparser
 import re
 import string
 import json
+import constants.Translations as translations
 
 today = datetime.now()
 year = today.year
@@ -147,3 +148,11 @@ def clean_for_tts(text):
 
 def generate_node_name(intent: str):
     return intent.replace(" ", "_")
+
+def translate(lang : str, key : str):
+    if key in translations.translations[lang]:
+        return translations.translations[lang][key]
+    else:
+        return "Intent Not Supported"
+     
+    
