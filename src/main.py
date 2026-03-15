@@ -17,8 +17,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
-
 app = FastAPI()
 model = os.getenv("LLM_MODEL")
 model_whisper = None
