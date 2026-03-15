@@ -120,5 +120,6 @@ INSTRUCTIONS:
         dt = date_time_invoker(llm,input,result["intent"])
         result["date"] = dt
         if super().handle(result) is None:
+            print("No super().handle() found")
             return result
         return super().handle(result)
