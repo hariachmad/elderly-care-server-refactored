@@ -13,7 +13,8 @@ class PageNavigatorHandler(Handler):
         node = INTENT_TO_NODE[intent]
         print("node: ", node)
         if intent not in UNNAVIGATOR_INTENT:
-            self.sio.instance.emit(node,json.dumps(state["date"]))
+            if self.sio.instance.connected:
+                self.sio.instance.emit(node,json.dumps(state["date"]))
             if super().handle(state) is None:
                 return state
         return super().handle(state)
