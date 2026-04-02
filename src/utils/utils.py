@@ -38,6 +38,20 @@ Rules:
 4. If the user only mentions a day number (e.g., "the 30th"): Use the current system month and year.
 
 5. If the user mentions a day of the week (e.g., "Monday"): Find the nearest upcoming date after today that matches that day.
+6. If the user mentions a day of the week WITH modifiers:
+
+   - "this <day>":
+     → Use the day in the CURRENT WEEK relative to today.
+     → If that day has already passed this week, still use the closest past day in this week.
+
+   - "next <day>":
+     → Use the day in the NEXT week (always future).
+
+   - "last <day>":
+     → Use the day in the PREVIOUS week.
+
+7. If the user mentions a day of the week WITHOUT modifiers:
+   → Find the nearest upcoming date after today.
 
 Output only the JSON; do not include any additional text.
 

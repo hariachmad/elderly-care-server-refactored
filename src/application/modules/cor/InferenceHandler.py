@@ -40,6 +40,12 @@ User input: {user_input}
 RULES:
 - DAY:
   * If user mentions an exact day name (e.g., Monday, Tuesday, Rabu, Jumat) or a specific date (e.g., "on 12th", "tanggal 5") → use intent with 'specific day'.
+  * If user mentions a day name (Monday, Tuesday, Rabu, Jumat, etc.)
+    WITH or WITHOUT modifiers:
+      - this (this Sunday / minggu ini hari Minggu)
+      - next (next Monday / Senin depan)
+      - last (last Friday / Jumat lalu)
+    → classify as 'specific day'
 
 - WEEK:
   * If user mentions "week", "week X", "week number", "minggu ke-X", 
