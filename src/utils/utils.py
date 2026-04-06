@@ -5,6 +5,7 @@ import re
 import string
 import json
 import constants.Translations as translations
+from utils.DateInvoker.DayInvoker import day_invokerV2
 
 today = datetime.now()
 year = today.year
@@ -17,7 +18,7 @@ def date_time_invoker(llm_, text, intent):
     if "month" in intent.lower():
         return month_invoker(llm_, text)
     if "day" in intent.lower():
-        return day_invoker(llm_, text)
+        return day_invokerV2(llm_, text, intent)
 
 def day_invoker(llm_, text):
     prompt_ = PromptTemplate(template=
@@ -168,5 +169,6 @@ def translate(lang : str, key : str):
         return translations.translations[lang][key]
     else:
         return "Intent Not Supported"
-     
     
+
+     
