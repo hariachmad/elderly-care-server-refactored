@@ -25,7 +25,7 @@ Your task is to extract WEEK intent into structured JSON.
 
 Output format:
 
-{"type": "week", "modifier": "<this|next|last|none>", "amount": int}
+{{"type": "week", "modifier": "<this|next|last|none>", "amount": int}}
 
 Rules:
 - Do NOT calculate actual dates
@@ -51,15 +51,15 @@ Examples:
 
 Input: "this week"
 Output:
-{"type": "week", "modifier": "this", "amount": 1}
+{{"type": "week", "modifier": "this", "amount": 1}}
 
 Input: "next week"
 Output:
-{"type": "week", "modifier": "next", "amount": 1}
+{{"type": "week", "modifier": "next", "amount": 1}}
 
 Input: "next 2 weeks"
 Output:
-{"type": "week", "modifier": "next", "amount": 2}
+{{"type": "week", "modifier": "next", "amount": 2}}
 
 Input: {text}
 """, input_variables=["text"])
