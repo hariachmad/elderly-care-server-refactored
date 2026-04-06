@@ -8,7 +8,6 @@ from constants.MedicalKeywords import medical_keywords
 from constants.PredefinedIntents import predefined_intents
 from constants.NodeConfigs import node_configs
 from utils.utils import date_time_invoker
-from utils.DateInvoker.WeekInvoker import week_invokerV2
 from infrastructure.LlmClient import LlmClient
 import os
 from langchain_classic.output_parsers import StructuredOutputParser, ResponseSchema
@@ -125,7 +124,6 @@ INSTRUCTIONS:
         answer = graph.instance.invoke({"intents": predefined_intents,"user_input": input})
         result = AnswerBuilder().set_llm(llm).set_answer(answer).set_ask_llm_answers(["asking again"]).build()
         dt = date_time_invoker(llm,input,result["intent"])
-        week_invokerV2(llm,input,result["intent"])
         result["date"] = dt
         if super().handle(result) is None:
             print("No super().handle() found")

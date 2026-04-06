@@ -25,7 +25,7 @@ Your task is to extract WEEK intent into structured JSON.
 
 Output format:
 
-{{"type": "week", "modifier": "<this|next|last|none>", "amount": int}}
+{{"type": "week", "modifier": "<this|next|last|none>", "amount": int, "week_number": int|null}}
 
 Rules:
 - Do NOT calculate actual dates
@@ -37,13 +37,18 @@ Modifier Rules:
 - "last week" → modifier = "last"
 - If only "week" → modifier = "none"
 
+Week Number Rules:
+- "week 18" → week_number = 18
+- "in week 20" → week_number = 20
+- If week number exists → modifier MUST be "none"
+
 Amount Rules:
 - "next 2 weeks" → amount = 2
 - "next week" → amount = 1
 - If not specified → amount = 1
-- Convert text numbers to integer (e.g., "two" → 2)
 
 STRICT RULE:
+- If week_number is present → ignore modifier & amount logic (set amount = 1)
 - Do NOT infer modifier if not present
 - Always return valid JSON
 
@@ -51,15 +56,19 @@ Examples:
 
 Input: "this week"
 Output:
-{{"type": "week", "modifier": "this", "amount": 1}}
-
-Input: "next week"
-Output:
-{{"type": "week", "modifier": "next", "amount": 1}}
+{{"type": "week", "modifier": "this", "amount": 1, "week_number": null}}
 
 Input: "next 2 weeks"
 Output:
-{{"type": "week", "modifier": "next", "amount": 2}}
+{{"type": "week", "modifier": "next", "amount": 2, "week_number": null}}
+
+Input: "week 18"
+Output:
+{{"type": "week", "modifier": "none", "amount": 1, "week_number": 18}}
+
+Input: "in week 20"
+Output:
+{{"type": "week", "modifier": "none", "amount": 1, "week_number": 20}}
 
 Input: {text}
 """, input_variables=["text"])
@@ -72,9 +81,11 @@ Input: {text}
 
     print("extracted:", result_dict)
 
-    result_date = resolve_week_from_llm(result_dict)
+    result_date_json = resolve_week_from_llm(result_dict)
 
-    print("result date week :", result_date)
+    print("result date week :", result_date_json)
+
+    return result_date_json
 
 
 def resolve_week_from_llm(data):
@@ -83,8 +94,15 @@ def resolve_week_from_llm(data):
 
     start_of_week = now - timedelta(days=today_idx)
 
-    modifier = data["modifier"]
+    modifier = data.get("modifier")
     amount = data.get("amount", 1)
+    week_number = data.get("week_number")
+
+    if week_number is not None:
+        return {
+            "year": now.year,
+            "week": int(week_number)
+        }
 
     if modifier == "this":
         target_date = start_of_week
@@ -95,7 +113,7 @@ def resolve_week_from_llm(data):
     elif modifier == "last":
         target_date = start_of_week - timedelta(weeks=amount)
 
-    else: 
+    else:
         target_date = start_of_week
 
     iso = target_date.isocalendar()

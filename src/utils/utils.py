@@ -6,6 +6,7 @@ import string
 import json
 import constants.Translations as translations
 from utils.DateInvoker.DayInvoker import day_invokerV2
+from utils.DateInvoker.WeekInvoker import week_invokerV2
 
 today = datetime.now()
 year = today.year
@@ -14,7 +15,7 @@ day = today.day
 
 def date_time_invoker(llm_, text, intent):
     if "week" in intent.lower():
-        return week_invoker(llm_, text)
+        return week_invokerV2(llm_, text, intent)
     if "month" in intent.lower():
         return month_invoker(llm_, text)
     if "day" in intent.lower():
