@@ -1,5 +1,10 @@
 translations = {
     "en": {
+
+        #All Activities & Schedule
+        "here_are_your_activities_for_specific_day" : "Here are your activities for that specific day",
+        "here_are_your_schedule_for_specific_day" : "Here are your schedule for that specific day",
+
         # Incident / Help
         "i_will_call_you_assistant": "I will call your assistant",
         "ok_wait_i_will_call_you_assistant": "Ok, wait. I will call your assistant",
@@ -57,6 +62,9 @@ translations = {
         "blacklist_question" : "I cannot provide an answer to this type of question"
     },
     "id": {
+        #All Activities & Schedule
+        "here_are_your_activities_for_specific_day" : "Ini adalah aktivitas Anda untuk hari tersebut",
+        "here_are_your_schedule_for_specific_day" : "Ini adalah jadwal Anda untuk hari tersebut",
         # Incident / Help
         "i_will_call_you_assistant": "Saya akan memanggil asisten Anda",
         "ok_wait_i_will_call_you_assistant": "Baik, tunggu sebentar. Saya akan memanggil asisten Anda",
@@ -85,9 +93,9 @@ translations = {
         "here_are_your_social_activities_for_that_specific_day": "Ini adalah aktivitas sosial Anda untuk hari tersebut",
 
         # Visit schedule
-        # "here_is_your_week_visit_schedule": "Ini adalah jadwal kunjungan Anda untuk minggu ini",
-        # "here_is_your_month_visit_schedule": "Ini adalah jadwal kunjungan Anda untuk bulan ini",
-        # "here_is_your_visit_schedule_for_that_specific_day": "Ini adalah jadwal kunjungan Anda untuk hari tersebut",
+        "here_is_your_week_visit_schedule": "Ini adalah jadwal kunjungan Anda untuk minggu ini",
+        "here_is_your_month_visit_schedule": "Ini adalah jadwal kunjungan Anda untuk bulan ini",
+        "here_is_your_visit_schedule_for_that_specific_day": "Ini adalah jadwal kunjungan Anda untuk hari tersebut",
 
         # Hardware
         "screen_brightness_increased": "Kecerahan layar ditingkatkan",
@@ -114,9 +122,9 @@ translations = {
         "blacklist_question" : "Maaf saya tidak bisa menjawab pertanyaan tersebut"
     },
     "sv": {
-        # Incident / Help
-        "i_will_call_you_assistant": "Okej, vänta lite så ringer jag efter hjälp",
-        "ok_wait_i_will_call_you_assistant": "Okej, vänta lite så ringer jag efter hjälp",
+        #All Activities & Schedule
+        "here_are_your_activities_for_specific_day" : "Här är dina aktiviteter för den dagen",
+        "here_are_your_schedule_for_specific_day" : "Här är ditt schemat för den dagen",
 
         # Status response
         "glad_to_know_you_are_safe": "Skönt att höra att du är i säkerhet",

@@ -1,4 +1,12 @@
 node_configs = {
+    "ALL_ACTIVITIES_SPECIFIC_DAY" : {
+        "node": "all activities for this specific day",
+        "message_key": "here_are_your_activities_for_specific_day"
+    },
+    "ALL_SCHEDULE_SPECIFIC_DAY" : {
+        "node": "all schedule for this specific day",
+        "message_key": "here_are_your_schedule_for_specific_day"
+    },
     "INCIDENT_HELP_EVENT_DETECTED" : {
         "node": "help",
         "message_key": "i_will_call_you_assistant"

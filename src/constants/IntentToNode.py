@@ -1,4 +1,8 @@
 INTENT_TO_NODE = {
+    # All Activities
+    "all activities specific day": "ALL_ACTIVITIES_SPECIFIC_DAY",
+    # All Schedule
+    "all schedule specific day": "ALL_SCHEDULE_SPECIFIC_DAY",
     # Medicine
     "medicine schedule week": "SHOW_MEDICINE_SCHEDULE_WEEK",
     "medicine schedule month": "SHOW_MEDICINE_SCHEDULE_MONTH",

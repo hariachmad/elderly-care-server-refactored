@@ -107,6 +107,33 @@ INSTRUCTIONS:
 2. Consider synonyms and similar phrasings (e.g., "mingguan" → weekly, "bulanan" → monthly, "harian" → specific day).
 3. Output MUST be one of the intents listed above.
 
+- ALL ACTIVITIES & ALL SCHEDULE:
+
+  * all activities specific day:
+    - If the user asks about activities WITHOUT specifying a particular activity type
+    - Examples:
+      * "What activities are there on Monday?"
+      * "Show activities for tomorrow"
+      * "Kegiatan hari ini apa saja?"
+    → classify as 'all activities specific day'
+
+  * all schedule specific day:
+    - If the user asks about schedule/events WITHOUT specifying a particular category
+    - Examples:
+      * "What is scheduled today?"
+      * "Show my schedule for Friday"
+      * "Jadwal hari ini apa?"
+    → classify as 'all schedule specific day'
+
+  * IMPORTANT:
+    - If a SPECIFIC activity is mentioned (e.g., yoga, bingo, gym)
+      → DO NOT use 'all activities specific day'
+    - If a SPECIFIC schedule type is mentioned (doctor appointment, visit, medication)
+      → DO NOT use 'all schedule specific day'
+
+  * PRIORITY:
+    - Specific intents ALWAYS override "all"
+
 {format_instructions}""",
     input_variables=["intents", "user_input"],
     partial_variables={
