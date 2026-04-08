@@ -16,7 +16,8 @@ from dotenv import load_dotenv
 from utils.DateInvoker.MonthInvoker import month_invokerV2
 
 class InferenceHandler(Handler):  
-    def handle(self,input, lang="en")->bool:
+    def handle(self,input, lang="en", additional_answer=""):
+        print("additional_answer from inference: ", additional_answer)
         load_dotenv()     
         response_schemas = [
         ResponseSchema(
@@ -134,6 +135,27 @@ INSTRUCTIONS:
   * PRIORITY:
     - Specific intents ALWAYS override "all"
 
+    - AMBIGUOUS PHRASES (IMPORTANT):
+
+  * If user uses general phrases like:
+      - "everything I need to do"
+      - "what should I do"
+      - "things to do"
+      - "what can I do"
+      - "kegiatan apa saja"
+      - "apa yang bisa dilakukan"
+    → interpret as ACTIVITIES (NOT schedule)
+
+    → classify as 'all activities specific day'
+
+  * Only classify as 'all schedule specific day' if the user explicitly refers to:
+      - schedule
+      - appointments
+      - agenda
+      - planned events
+      - jadwal
+      - schedule saya
+
 {format_instructions}""",
     input_variables=["intents", "user_input"],
     partial_variables={
@@ -147,7 +169,7 @@ INSTRUCTIONS:
         llm = LlmClient(model, temperature, base_url).instance
         aiAgent = AiAgentBuilder().set_predefined_intents(predefined_intents).set_blacklist_keywords(medical_keywords).set_prompt_template(prompt).set_llm(llm).set_parser(parser).build()
         node = Node(predefined_intents, aiAgent.chain)
-        workflow = WorkflowBuilder().set_nodes(node).set_node_configs(node_configs).build(lang)
+        workflow = WorkflowBuilder().set_nodes(node).set_node_configs(node_configs).build(lang, additional_answer)
         graph = GraphBuilder().set_workflow(workflow).build()
         answer = graph.instance.invoke({"intents": predefined_intents,"user_input": input})
         result = AnswerBuilder().set_llm(llm).set_answer(answer).set_ask_llm_answers(["asking again"]).build()

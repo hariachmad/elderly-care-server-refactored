@@ -167,6 +167,7 @@ def generate_node_name(intent: str):
     return intent.replace(" ", "_")
 
 def translate(lang : str, key : str):
+    print("key: ", key)
     if key in translations.translations[lang]:
         return translations.translations[lang][key]
     else:

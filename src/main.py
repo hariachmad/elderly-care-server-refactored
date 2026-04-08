@@ -3,6 +3,7 @@ from application.modules.cor.InferenceHandler import InferenceHandler
 from application.modules.cor.PageNavigatorHandler import PageNavigatorHandler
 from application.modules.cor.AudioFileDispatcherHandler import AudioFileDispatcherHandler
 from application.modules.cor.WakeWordHandler import WakeWordHandler
+from application.modules.cor.FinalAnswerHandler import FinalAnswerHandler
 from fastapi.responses import FileResponse
 from fastapi import FastAPI,File, UploadFile, Body
 import whisper
@@ -44,7 +45,8 @@ async def uploadJson(payload : dict = Body(...)): #noqa
     blacklist = BlackListHandler()
     inference = InferenceHandler()
     navigate = PageNavigatorHandler()
-    blacklist.set_next(inference).set_next(navigate)
+    final_answer = FinalAnswerHandler()
+    blacklist.set_next(final_answer).set_next(inference).set_next(navigate)
     answer = blacklist.handle(payload["message"], payload["lang"])
     end_time = datetime.datetime.now() 
     duration = (end_time - start_time).total_seconds()

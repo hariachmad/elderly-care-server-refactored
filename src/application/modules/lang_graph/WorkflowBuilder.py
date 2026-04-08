@@ -17,16 +17,22 @@ class WorkflowBuilder:
         self.node_configs = node_configs
         return self
     
-    def build(self, lang):
+    def build(self, lang, additional_answer="")->Workflow:
         if self.node_configs is None:
             raise ValueError("node_configs must be set")
         
         self.workflow.add_node("classify_intent", self.nodes.classify_intent_node)   
         
-        for node_name, schedule_type in self.node_configs.items():
-            self.workflow.add_node(
-            node_name, 
-            lambda state, st=schedule_type: {"final_answer": translate(lang,st["message_key"])})
+        for node_name, schedule_type,in self.node_configs.items():
+            if schedule_type["need_additional_final_answer"]:
+                print("schedule_type: ",schedule_type["message_key"]+additional_answer)
+                self.workflow.add_node(
+                node_name, 
+                lambda state, st=schedule_type: {"final_answer": translate(lang,st["message_key"]+additional_answer)})
+            else:
+                self.workflow.add_node(
+                node_name, 
+                lambda state, st=schedule_type: {"final_answer": translate(lang,st["message_key"])})
         
         self.workflow.add_node("router", lambda state: state)
 

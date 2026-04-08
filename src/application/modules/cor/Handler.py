@@ -9,7 +9,7 @@ class Handler(ABC):
         return handler 
 
     @abstractmethod
-    def handle(self, request, lang="en"):
+    def handle(self, request, lang="en", additional_answer=""):
         if self._next_handler:
-            return self._next_handler.handle(request, lang)
+            return self._next_handler.handle(request, lang, additional_answer)
         return None

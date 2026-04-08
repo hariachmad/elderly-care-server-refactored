@@ -6,7 +6,7 @@ from application.modules.cor.AudioFileDispatcherHandler import AudioFileDispatch
 from utils.utils import translate
 
 class BlackListHandler(Handler):
-    def handle(self, prompt, lang="en")->bool:
+    def handle(self, prompt, lang="en", additional_answer="")->bool:
         audioFileDispatcher = AudioFileDispatcherHandler()
         if not blacklist_keyword_guard(medical_keywords,prompt):
             return super().handle(prompt, lang)
