@@ -3,6 +3,11 @@ predefined_intents = [
     "all activities specific day",
     "all schedule specific day",
 
+    # Invoice
+    "show invoice week",
+    "show invoice month",
+    "show invoice specific day",
+
     # Medicine
     "medicine schedule week",
     "medicine schedule month",

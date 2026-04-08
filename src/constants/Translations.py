@@ -12,6 +12,11 @@ translations = {
         # Status response
         "glad_to_know_you_are_safe": "Glad to know you are safe",
 
+        # invoice
+        "here_are_your_invoices_for_this_week": "Here are your invoices for that specific week",
+        "here_are_your_invoices_for_this_month": "Here are your invoices for that specific month",
+        "here_are_your_invoices_for_this_specific_day": "Here are your invoices for that specific date",
+
         # Medicine schedule
         "here_is_your_week_medicine_schedule": "Here is your medicine schedule for that specific week",
         "here_is_your_month_medicine_schedule": "Here is your medicine schedule for that specific month",
@@ -71,6 +76,11 @@ translations = {
 
         # Status response
         "glad_to_know_you_are_safe": "Senang mengetahui Anda baik-baik saja",
+        
+        # invoice
+        "here_are_your_invoices_for_this_week": "Ini adalah faktur Anda untuk minggu ini",
+        "here_are_your_invoices_for_this_month": "Ini adalah faktur Anda untuk bulan ini",
+        "here_are_your_invoices_for_this_specific_day": "Ini adalah faktur Anda untuk hari tersebut",
 
         # Medicine schedule
         "here_is_your_week_medicine_schedule": "Ini adalah jadwal obat Anda untuk minggu ini",
@@ -122,6 +132,11 @@ translations = {
         "blacklist_question" : "Maaf saya tidak bisa menjawab pertanyaan tersebut"
     },
     "sv": {
+        # invoice
+        "here_are_your_invoices_for_this_week": "Här finns dina fakturor detta vecka",
+        "here_are_your_invoices_for_this_month": "Här finns dina fakturor detta år",
+        "here_are_your_invoices_for_this_specific_day": "Här finns dina fakturor den dagen",
+
         #All Activities & Schedule
         "here_are_your_activities_for_specific_day" : "Här är dina aktiviteter för den dagen",
         "here_are_your_schedule_for_specific_day" : "Här är ditt schemat för den dagen",
@@ -150,9 +165,9 @@ translations = {
         "here_are_your_social_activities_for_that_specific_day": "Här är dina sociala aktiviteter för den dagen",
 
         # Visit schedule
-        # "here_is_your_week_visit_schedule": "Ini adalah jadwal kunjungan Anda untuk minggu ini",
-        # "here_is_your_month_visit_schedule": "Ini adalah jadwal kunjungan Anda untuk bulan ini",
-        # "here_is_your_visit_schedule_for_that_specific_day": "Ini adalah jadwal kunjungan Anda untuk hari tersebut",
+        "here_is_your_week_visit_schedule": "Här är ditt veckoschema för besök",
+        "here_is_your_month_visit_schedule": "Här är ditt månadsschema för besök",
+        "here_is_your_visit_schedule_for_that_specific_day": "Här är ditt schema för besök den dagen",
 
         # Hardware
         "screen_brightness_increased": "Skärmens ljusstyrka harökats",

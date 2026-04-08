@@ -1,4 +1,16 @@
 node_configs = {
+    "SHOW_INVOICE_WEEK": {
+        "node": "invoice schedule for this week",
+        "message_key": "here_are_your_invoices_for_this_week"
+    },
+    "SHOW_INVOICE_MONTH": {
+        "node": "invoice schedule for this month",
+        "message_key": "here_are_your_invoices_for_this_month"
+    },
+    "SHOW_INVOICE_SPECIFIC_DAY": {
+        "node": "invoice schedule for this specific day",
+        "message_key": "here_are_your_invoices_for_this_specific_day"
+    },
     "ALL_ACTIVITIES_SPECIFIC_DAY" : {
         "node": "all activities for this specific day",
         "message_key": "here_are_your_activities_for_specific_day"

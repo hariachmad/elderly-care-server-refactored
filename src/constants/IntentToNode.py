@@ -3,6 +3,10 @@ INTENT_TO_NODE = {
     "all activities specific day": "ALL_ACTIVITIES_SPECIFIC_DAY",
     # All Schedule
     "all schedule specific day": "ALL_SCHEDULE_SPECIFIC_DAY",
+    # Invoice
+    "show invoice week": "SHOW_INVOICE_WEEK",
+    "show invoice month": "SHOW_INVOICE_MONTH",
+    "show invoice specific day": "SHOW_INVOICE_SPECIFIC_DAY",
     # Medicine
     "medicine schedule week": "SHOW_MEDICINE_SCHEDULE_WEEK",
     "medicine schedule month": "SHOW_MEDICINE_SCHEDULE_MONTH",
@@ -29,10 +33,10 @@ INTENT_TO_NODE = {
     "visit except doctor schedule specific day": "SHOW_VISITS_SPECIFIC_DAY",
 
     # Alert Detection
-    "help": "INCIDENT_HELP_EVENT_DETECTED",
+    "help": "other",
     "i am ok": "i_am_ok",
-    "i have problem" : "INCIDENT_HELP_EVENT_DETECTED",
-    "my body is fall" : "INCIDENT_HELP_EVENT_DETECTED",
+    "i have problem" : "other",
+    "my body is fall" : "other",
 
     #Hardware Functionalities
     "Increase Screen's Brightness" : "INCREASE_BRIGHTNESS",
@@ -51,10 +55,9 @@ INTENT_TO_NODE = {
     "Reset" : "DEVICE_RESET",
     "Restart" : "DEVICE_RESTART",
 
-    "call assistant" : "INCIDENT_HELP_EVENT_DETECTED",
+    "call assistant" : "other",
 
+    #ALARM
     "alarm stop" : "ALARM_STOP",
-
     "alarm snooze" : "ALARM_SNOOZE"
-    
 }
