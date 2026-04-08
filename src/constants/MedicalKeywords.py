@@ -9,5 +9,5 @@ medical_keywords = [
     "Laparoscope", "Stethoscope", "Syringe pump", "Catheter",
     "Surgical laser", "Dental drill", "Ophthalmic lens", "Medical device",
     "Diagnostic tool", "Implant", "Prosthesis", "Medical scanner",
-    "Monitoring device", "Rehabilitation device", "Wearable health tracker", "diagnosis", "medications","medication"
+    "Monitoring device", "Rehabilitation device", "Wearable health tracker", "diagnosis"
 ]

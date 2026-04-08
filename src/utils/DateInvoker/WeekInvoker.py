@@ -4,8 +4,6 @@ from datetime import datetime, timedelta
 
 
 def week_invokerV2(llm_, text, intent):
-
-
     prompt_ = PromptTemplate(template=
     """
 You MUST return ONLY valid JSON.

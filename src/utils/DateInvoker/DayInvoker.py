@@ -6,6 +6,7 @@ today = datetime.now()
 year = today.year
 month = today.strftime("%B")
 day = today.day
+current_year = datetime.now().year
 
 days_map = {
     "monday": 0,
@@ -20,6 +21,7 @@ days_map = {
 def day_invokerV2(llm_, text, intent):
     prompt_ = PromptTemplate(template=
     """
+        Current year is: {current_year}
         Your task is NOT to calculate the final date.
 
         Your task is to extract the date intent into structured JSON.
@@ -68,6 +70,10 @@ def day_invokerV2(llm_, text, intent):
 - Never add a modifier that does not exist in the user input.
 - If no modifier word is present, the modifier MUST be "none".
 
+    Year Rules:
+- If year is NOT mentioned → use {current_year}
+- DO NOT guess any other year
+
     Examples:
 
 Input: "sunday"
@@ -83,12 +89,12 @@ Output:
 {{"type": "weekday", "value": "sunday", "modifier": "next"}}
 
         Input: {text}
-        """, input_variables=["text"],
+        """, input_variables=["text","current_year"],
         )
     
     prompt : PromptTemplate = prompt_
     # prompt = prompt.format(text=text, today=today_iso, year=current_year)
-    prompt = prompt.format(text=text)
+    prompt = prompt.format(text=text, current_year=current_year)
 
     result = llm_.invoke(prompt)
     result : dict= json.loads(result.content.strip())

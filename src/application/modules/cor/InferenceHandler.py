@@ -13,8 +13,9 @@ import os
 from langchain_classic.output_parsers import StructuredOutputParser, ResponseSchema
 from langchain_core.prompts import PromptTemplate
 from dotenv import load_dotenv
+from utils.DateInvoker.MonthInvoker import month_invokerV2
 
-class InferenceHandler(Handler):
+class InferenceHandler(Handler):  
     def handle(self,input, lang="en")->bool:
         load_dotenv()     
         response_schemas = [
