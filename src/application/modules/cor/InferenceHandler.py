@@ -64,7 +64,6 @@ RULES:
     OR a month combined with a year (e.g., "January 2026", "Maret 2024")
     → use intent with 'monthly'.
   * Do NOT classify month references as 'specific day'.
-  * Only use 'monthly' because 'specific month' is not available in predefined intents.
 
 - ACTIVITY TYPE:
   * HEALTH ACTIVITY:

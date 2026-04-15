@@ -30,7 +30,7 @@ predefined_intents = [
 
     # Visit Except Doctor
     "visit except doctor schedule week",
-    "visit except doctor schedule monthly",
+    "visit except doctor schedule month",
     "visit except doctor schedule specific day",
 
 

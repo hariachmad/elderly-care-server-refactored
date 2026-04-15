@@ -12,7 +12,7 @@ node_configs = {
     "SHOW_INVOICE_SPECIFIC_DAY": {
         "node": "invoice schedule for this specific day",
         "message_key": "here_are_your_invoices_for_",
-        "need_additional_final_answer": False
+        "need_additional_final_answer": True
     },
     "ALL_ACTIVITIES_SPECIFIC_DAY" : {
         "node": "all activities for this specific day",

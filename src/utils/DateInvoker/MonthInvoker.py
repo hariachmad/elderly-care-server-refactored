@@ -86,13 +86,13 @@ Input: {text}
 
     print("extracted:", result_dict)
 
-    result_date_json = resolve_month_from_llm(result_dict)
+    result_date_json = resolve_month_from_llm(result_dict, intent)
 
     print("result date month :", result_date_json)
 
     return result_date_json
 
-def resolve_month_from_llm(data):
+def resolve_month_from_llm(data, intent):
     now = datetime.now()
 
     modifier = data.get("modifier")
@@ -108,12 +108,9 @@ def resolve_month_from_llm(data):
             return {
                 "year": int(year),
                 "month": month_number
+        
             }
-
-        if month_number < now.month:
-            resolved_year = now.year + 1
-        else:
-            resolved_year = now.year
+        resolved_year = now.year
 
         return {
             "year": resolved_year,
