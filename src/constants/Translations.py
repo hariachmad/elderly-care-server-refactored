@@ -3,7 +3,7 @@ translations = {
 
         #All Activities & Schedule
         "here_are_your_activities_for_today" : "Here are your activities for today",
-        "here_are_your_schedule_for_today" : "Here are your schedule for today",
+        "here_are_your_schedule_for_today" : "Here is your schedule for today",
         "here_are_your_activities_for_tomorrow" : "Here are your activities for tomorrow",
         "here_are_your_schedule_for_tomorrow" : "Here are your schedule for tomorrow",
         "here_are_your_activities_for_yesterday" : "Here are your activities for yesterday",

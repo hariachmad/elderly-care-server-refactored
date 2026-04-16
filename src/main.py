@@ -104,7 +104,8 @@ async def upload(file: UploadFile = File(...)): #noqa
     inference = InferenceHandler()
     pageNavigator = PageNavigatorHandler()
     audioFileDispatcher = AudioFileDispatcherHandler()
-    blacklist.set_next(inference).set_next(pageNavigator).set_next(audioFileDispatcher)
+    final_answer = FinalAnswerHandler()
+    blacklist.set_next(final_answer).set_next(inference).set_next(pageNavigator).set_next(audioFileDispatcher)
 
     meta_data_text = blacklist.handle(result["text"])
     end_time = datetime.datetime.now() 
