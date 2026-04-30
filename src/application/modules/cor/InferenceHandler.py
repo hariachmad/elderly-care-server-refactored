@@ -17,7 +17,6 @@ from utils.DateInvoker.MonthInvoker import month_invokerV2
 
 class InferenceHandler(Handler):  
     def handle(self,input, lang="en", additional_answer=""):
-        print("additional_answer from inference: ", additional_answer)
         load_dotenv()     
         response_schemas = [
         ResponseSchema(
@@ -154,6 +153,25 @@ INSTRUCTIONS:
       - planned events
       - jadwal
       - schedule saya
+  
+  - MIXED QUERIES (CRITICAL PRIORITY):
+
+  * If the user mentions BOTH:
+      - general activities (e.g., "activities", "things to do")
+      AND
+      - schedule-related items (e.g., medication, medicines, appointments, visits)
+
+    → ALWAYS classify as 'all schedule specific day'
+
+  * Reason:
+    - Schedule-related items (medication, appointments, visits) have higher priority than general activities.
+
+  * Examples:
+    - "What activities and medicines are planned today?"
+    - "What can I do and what medications do I have today?"
+    - "Activities and appointments for today"
+
+    → 'all schedule specific day'
 
 {format_instructions}""",
     input_variables=["intents", "user_input"],

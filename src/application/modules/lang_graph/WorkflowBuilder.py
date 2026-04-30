@@ -25,7 +25,6 @@ class WorkflowBuilder:
         
         for node_name, schedule_type,in self.node_configs.items():
             if schedule_type["need_additional_final_answer"]:
-                print("schedule_type: ",schedule_type["message_key"]+additional_answer)
                 self.workflow.add_node(
                 node_name, 
                 lambda state, st=schedule_type: {"final_answer": translate(lang,st["message_key"]+additional_answer)})

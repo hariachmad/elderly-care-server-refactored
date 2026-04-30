@@ -81,7 +81,7 @@ node_configs = {
     },
     "SHOW_HEALTH_ACTIVITY_MONTH": {
         "node": "health activity schedule for this month",
-        "message_key": "here_is_your_health_activity_schedule_for__",
+        "message_key": "here_is_your_health_activity_schedule_for_",
         "need_additional_final_answer": True,
     },
     "SHOW_HEALTH_ACTIVITY_SPECIFIC_DAY": {

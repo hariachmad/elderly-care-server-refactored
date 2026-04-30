@@ -120,5 +120,4 @@ input_variables=["text"]
         base_url = os.getenv("LLM_BASE_URL", "http://localhost:11434/")
         llm = LlmClient(model, temperature, base_url).instance
         additional_answer = llm.invoke(prompt).content
-        print("additional answer: " + additional_answer)
         return super().handle(input, lang, additional_answer=additional_answer)

@@ -67,7 +67,6 @@ Output only the JSON; do not include any additional text.
     prompt = prompt.format(text=text, today=today, year=year, month=month, day=day)
 
     result = llm_.invoke(prompt)
-    print(result.content.strip())
     result : dict= json.loads(result.content.strip()) 
     return result
 
