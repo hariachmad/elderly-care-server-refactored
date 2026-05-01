@@ -186,6 +186,12 @@ def resolve_date_from_llm(data):
         raise ValueError("Unknown type")
 
 def datetime_to_json(dt: datetime) -> dict:
+    if dt is None:
+        return {
+            "year": None,
+            "month": None,
+            "day": None
+    }
     return {
         "year": dt.year,
         "month": dt.month,

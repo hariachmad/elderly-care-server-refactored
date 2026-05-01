@@ -107,7 +107,7 @@ async def upload(file: UploadFile = File(...)): #noqa
     final_answer = FinalAnswerHandler()
     blacklist.set_next(final_answer).set_next(inference).set_next(pageNavigator).set_next(audioFileDispatcher)
 
-    # meta_data_text = blacklist.handle(result["text"])
+    meta_data_text = blacklist.handle(result["text"])
     end_time = datetime.datetime.now() 
     duration = (end_time - start_time).total_seconds()
     print(f"🏁 Finished at: {end_time.strftime('%Y-%m-%d %H:%M:%S')} (Duration: {duration:.2f} seconds)")

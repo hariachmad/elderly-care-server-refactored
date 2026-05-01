@@ -5,6 +5,7 @@ from infrastructure.TtsClient import TtsClient
 
 class AudioFileDispatcherHandler(Handler):
     def handle(self, state, lang="en", additional_answer="")->bool:
+        print("create text to file")
         tts = TtsClient()
         UPLOAD_DIR = "uploads"
         REPLY_DIR = "reply"
